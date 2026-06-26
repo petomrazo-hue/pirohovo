@@ -57,8 +57,8 @@ body::after {
 }
 
 /* 2 food slides × ~18s each = 36s total */
-.bg-slide.s1 { animation-delay:  0s; background-image: url('images/bg1.jpg'); background-position: center 80%; }
-.bg-slide.s2 { animation-delay: 18s; background-image: url('images/bg2.jpg'); background-position: center 70%; }
+.bg-slide.s1 { animation-delay:  0s; background-image: url('images/bg1.jpg'); background-position: center 85%; }
+.bg-slide.s2 { animation-delay: 18s; background-image: url('images/bg2.jpg'); background-position: center 82%; }
 
 @keyframes bgFade {
   0%          { opacity: 0;   transform: scale(1); }
@@ -68,14 +68,15 @@ body::after {
 
 .bg-overlay {
   position: fixed; inset: 0; z-index: -1;
-  /* Cinematický overlay — svetlý v strede (jedlo viditeľné), tmavý naspodku (text čitateľný) */
+  /* Hore tmavé (skrýva IG text overlay), stred svetlý (jedlo viditeľné), spodok tmavý (text čitateľný) */
   background:
-    radial-gradient(ellipse 80% 65% at 50% 45%, rgba(10,8,2,.20) 0%, transparent 70%),
-    linear-gradient(180deg,
-      rgba(10,8,2,.18) 0%,
-      rgba(10,8,2,.12) 35%,
-      rgba(10,8,2,.38) 62%,
-      rgba(14,12,6,.82) 100%);
+    linear-gradient(to bottom,
+      rgba(10,8,2,.96) 0%,
+      rgba(10,8,2,.72) 10%,
+      rgba(10,8,2,.25) 22%,
+      rgba(10,8,2,.12) 42%,
+      rgba(10,8,2,.30) 65%,
+      rgba(14,12,6,.80) 100%);
   pointer-events: none;
 }
 
@@ -287,35 +288,37 @@ body::after {
 .hero__particles { position: absolute; inset: 0; pointer-events: none; }
 .hero__content { position: relative; z-index: 1; max-width: 740px; }
 
-/* Logo ring — originálne logo z IG */
-.hero__logo-ring {
-  width: 220px; height: 220px; border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 50px;
-  animation: ringGlow 5s ease-in-out infinite alternate;
-  box-shadow:
-    0 0 0 2px rgba(212,168,67,.15),
-    0 0 60px rgba(212,168,67,.18),
-    0 0 120px rgba(212,168,67,.08);
-  flex-shrink: 0;
+/* Hero ornament — zlatý divider namiesto čierneho logo kruhu */
+.hero__orn {
+  display: flex; align-items: center; gap: 12px;
+  justify-content: center; margin-bottom: 36px;
 }
-@keyframes ringGlow {
-  from { box-shadow: 0 0 0 1px rgba(212,168,67,.05), 0 0 40px rgba(212,168,67,.08), inset 0 1px 0 rgba(212,168,67,.05); }
-  to   { box-shadow: 0 0 0 1px rgba(212,168,67,.15), 0 0 90px rgba(212,168,67,.22), inset 0 1px 0 rgba(212,168,67,.12); }
+.hero__orn-line {
+  flex: 1; max-width: 80px; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212,168,67,.45), transparent);
+}
+.hero__orn-gem {
+  color: rgba(212,168,67,.7); font-size: .7rem;
+  animation: gemPulse 3s ease-in-out infinite alternate;
+}
+@keyframes gemPulse {
+  from { opacity: .5; }
+  to   { opacity: 1; }
+}
+.hero__orn-label {
+  font-size: .68rem; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(212,168,67,.65); font-weight: 600; white-space: nowrap;
 }
 
-.hero__logo-sub  { font-size: .6rem; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
-
-/* Originálne logo v hero ring */
-.hero__logo-img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+/* Hero meta row */
+.hero__meta-row {
+  display: flex; align-items: center; gap: 12px; justify-content: center;
+  flex-wrap: wrap; margin-top: 32px;
+  font-size: .82rem; color: var(--muted);
 }
-.hero__logo-name {
-  font-family: var(--serif); font-size: 1.15rem; font-weight: 700;
-  letter-spacing: .18em; color: var(--gold);
-}
+.hero__meta-item { display: flex; align-items: center; gap: 6px; }
+.hero__star { color: var(--gold); letter-spacing: 1px; }
+.hero__meta-sep { color: rgba(212,168,67,.3); }
 
 .hero__title {
   font-family: var(--serif);
@@ -480,9 +483,10 @@ body::after {
   text-transform: uppercase; padding: 3px 9px; border-radius: 100px;
   flex-shrink: 0; white-space: nowrap;
 }
-.mbadge--star { background: rgba(212,168,67,.12); color: var(--gold); border: 1px solid rgba(212,168,67,.25); }
-.mbadge--new  { background: rgba(192,57,43,.12);  color: #e07878; border: 1px solid rgba(192,57,43,.25);
+.mbadge--star   { background: rgba(212,168,67,.12); color: var(--gold); border: 1px solid rgba(212,168,67,.25); }
+.mbadge--new    { background: rgba(192,57,43,.12);  color: #e07878; border: 1px solid rgba(192,57,43,.25);
   animation: newPulse 2s ease-in-out infinite; }
+.mbadge--season { background: rgba(120,170,80,.12); color: #8ac56a; border: 1px solid rgba(120,170,80,.25); }
 @keyframes newPulse {
   0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,.3); }
   50%      { box-shadow: 0 0 0 4px rgba(192,57,43,.0); }
@@ -850,7 +854,7 @@ body::after {
 
 /* ═══════════════ FLOATING ELEMENTS ═══════════════ */
 .float-wa {
-  position: fixed; bottom: 100px; right: 24px; z-index: 9990;
+  position: fixed; bottom: 88px; right: 22px; z-index: 9991;
   width: 56px; height: 56px; border-radius: 50%;
   background: #25d366; color: #fff;
   display: flex; align-items: center; justify-content: center;
@@ -861,7 +865,7 @@ body::after {
 .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
 
 .float-top {
-  position: fixed; bottom: 24px; right: 24px; z-index: 9990;
+  position: fixed; bottom: 22px; right: 22px; z-index: 9990;
   width: 48px; height: 48px; border-radius: 50%;
   background: rgba(20,19,12,.92); color: var(--gold);
   border: 1px solid rgba(212,168,67,.3);
@@ -873,6 +877,11 @@ body::after {
 }
 .float-top.visible { opacity: 1; pointer-events: auto; }
 .float-top:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.5); color: var(--gold-l); }
+
+@media (max-width: 768px) {
+  .float-wa  { width: 48px; height: 48px; bottom: 80px; right: 16px; }
+  .float-top { bottom: 16px; right: 16px; }
+}
 
 /* ═══════════════ COOKIE BANNER ═══════════════ */
 .cookie-banner {
@@ -910,4 +919,19 @@ body::after {
 
 @media (max-width: 960px) {
   .reels-embed-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── WCAG 2.1 §2.2.2 — prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .bg-slide          { animation: none; opacity: 1; }
+  .hero__glow        { animation: none; }
+  .hero__deco        { animation: none; }
+  .cursor-pirog      { display: none; }
+  .hero__orn-gem     { animation: none; }
+  .open-badge::before { animation: none; }
+  .mbadge--new       { animation: none; }
+  .btn--pulse        { animation: none; }
+  .flour-dot         { animation: none; }
+  .reveal            { opacity: 1; transform: none; transition: none; }
+  .hero__arrow span  { animation: none; opacity: .6; }
 }
