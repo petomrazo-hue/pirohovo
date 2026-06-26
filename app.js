@@ -8,13 +8,15 @@ window.addEventListener('scroll', () => {
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 burger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  burger.classList.toggle('is-open');
+  const open = navLinks.classList.toggle('open');
+  burger.classList.toggle('is-open', open);
+  burger.setAttribute('aria-expanded', open);
 });
 navLinks.querySelectorAll('a').forEach(a =>
   a.addEventListener('click', () => {
     navLinks.classList.remove('open');
     burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
   })
 );
 
@@ -27,18 +29,32 @@ const revealObs = new IntersectionObserver((entries) => {
       revealObs.unobserve(entry.target);
     }
   });
-}, { threshold: 0.08 });
+}, { threshold: 0.06 });
 reveals.forEach(el => revealObs.observe(el));
 
-// ── Menu filter ──
+// ── Menu filter (restaurant list) ──
 const tabs = document.querySelectorAll('.tab');
-const cards = document.querySelectorAll('.mcard');
+const menuCats = document.querySelectorAll('.menu-cat');
+const mItems = document.querySelectorAll('.mitem');
+
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const f = tab.dataset.filter;
-    cards.forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
+    if (f === 'all') {
+      menuCats.forEach(c => c.classList.remove('hidden'));
+      mItems.forEach(i => i.style.display = '');
+    } else {
+      menuCats.forEach(cat => {
+        const groupItems = cat.querySelectorAll('.mitem');
+        const match = [...groupItems].some(i => i.dataset.cat === f);
+        cat.classList.toggle('hidden', !match);
+        groupItems.forEach(i => {
+          i.style.display = i.dataset.cat === f ? '' : 'none';
+        });
+      });
+    }
   });
 });
 
@@ -70,12 +86,10 @@ tabs.forEach(tab => {
     if (now - last < 85) return;
     last = now;
     count++;
-    // Every 5th mousemove emit 2 pirohy for a "trail burst"
     emitPirog(e.clientX, e.clientY, false);
     if (count % 5 === 0) emitPirog(e.clientX + (Math.random()-0.5)*20, e.clientY + (Math.random()-0.5)*20, false);
   }, { passive: true });
 
-  // Click burst
   window.addEventListener('click', function (e) {
     for (let i = 0; i < 5; i++) {
       setTimeout(() => emitPirog(
@@ -99,7 +113,7 @@ tabs.forEach(tab => {
   }, { passive: true });
 })();
 
-// ── Floating flour particles (rising from bottom, continuous) ──
+// ── Floating flour particles ──
 (function () {
   const container = document.getElementById('particles');
   if (!container) return;
@@ -113,55 +127,129 @@ tabs.forEach(tab => {
       100% { transform: translateY(-110vh) translateX(var(--drift)) rotate(var(--spin)); opacity: 0; }
     }
     .flour-dot {
-      position: absolute;
-      border-radius: 50%;
+      position: absolute; border-radius: 50%;
       animation: flourRise var(--dur) var(--delay) ease-in-out infinite;
-      will-change: transform, opacity;
-      pointer-events: none;
+      will-change: transform, opacity; pointer-events: none;
     }
   `;
   document.head.appendChild(style);
 
-  const count = 28;
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < 28; i++) {
     const dot = document.createElement('span');
     dot.className = 'flour-dot';
     const size = 1.2 + Math.random() * 3.5;
     const x = Math.random() * 100;
     const dur = 12 + Math.random() * 18;
-    const delay = -(Math.random() * dur); // start at random point in cycle
+    const delay = -(Math.random() * dur);
     const isGold = Math.random() > 0.55;
     const op = (.08 + Math.random() * .22).toFixed(2);
     const drift = ((Math.random() - 0.5) * 120).toFixed(0) + 'px';
     const spin = ((Math.random() - 0.5) * 360).toFixed(0) + 'deg';
-    dot.style.cssText = `
-      left:${x}%;
-      bottom:${-size}px;
-      width:${size}px; height:${size}px;
-      background: ${isGold ? `rgba(212,168,67,${op})` : `rgba(255,252,235,${op})`};
-      --dur: ${dur}s;
-      --delay: ${delay}s;
-      --op: ${op};
-      --drift: ${drift};
-      --spin: ${spin};
-    `;
+    dot.style.cssText = `left:${x}%;bottom:${-size}px;width:${size}px;height:${size}px;
+      background:${isGold ? `rgba(212,168,67,${op})` : `rgba(255,252,235,${op})`};
+      --dur:${dur}s;--delay:${delay}s;--op:${op};--drift:${drift};--spin:${spin};`;
     container.appendChild(dot);
   }
 })();
 
-// ── Gold shimmer on menu cards ──
+// ── Hero logo ring parallax ──
 (function () {
-  document.querySelectorAll('.mcard').forEach(card => {
-    card.addEventListener('mousemove', function (e) {
-      const rect = this.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-      this.style.setProperty('--mx', x + '%');
-      this.style.setProperty('--my', y + '%');
-    });
-    card.addEventListener('mouseleave', function () {
-      this.style.removeProperty('--mx');
-      this.style.removeProperty('--my');
-    });
+  const ring = document.getElementById('heroRing');
+  if (!ring) return;
+  window.addEventListener('mousemove', function (e) {
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx * 8;
+    const dy = (e.clientY - cy) / cy * 8;
+    ring.style.transform = `translate(${dx}px, ${dy}px)`;
+  }, { passive: true });
+})();
+
+// ── Back to top ──
+const backTop = document.getElementById('backTop');
+if (backTop) {
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 600);
+  }, { passive: true });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// ── Dynamic year ──
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ── Open/closed badge ──
+(function () {
+  const badge = document.getElementById('openBadge');
+  if (!badge) return;
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun,1=Mon,...,6=Sat
+  const hour = now.getHours();
+  const min = now.getMinutes();
+  const time = hour * 60 + min;
+  const isMonday = day === 1;
+  const inHours = time >= 11 * 60 && time < 20 * 60;
+  if (!isMonday && inHours) {
+    badge.className = 'open-badge is-open';
+    badge.textContent = 'Dnes otvorené · do 20:00';
+  } else if (isMonday) {
+    badge.className = 'open-badge is-closed';
+    badge.textContent = 'Dnes zatvorené';
+  } else if (time >= 20 * 60) {
+    badge.className = 'open-badge is-closed';
+    badge.textContent = 'Dnes zatvorené · otvárame zajtra 11:00';
+  } else {
+    badge.className = 'open-badge is-open';
+    badge.textContent = 'Dnes otvárame o 11:00';
+  }
+})();
+
+// ── Cookie banner + Google Consent Mode v2 ──
+(function () {
+  const banner = document.getElementById('cookieBanner');
+  const accept  = document.getElementById('cookieAccept');
+  const decline = document.getElementById('cookieDecline');
+  if (!banner) return;
+
+  function gtag() { if (window.dataLayer) window.dataLayer.push(arguments); }
+
+  function grantAll() {
+    if (typeof gtag === 'function') {
+      gtag('consent','update',{
+        'ad_storage':         'granted',
+        'ad_user_data':       'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage':  'granted'
+      });
+    }
+  }
+
+  function grantEssential() {
+    // Keep defaults (denied) — nothing extra to grant
+  }
+
+  // Apply saved consent on page load
+  const saved = localStorage.getItem('pirohovoCookies');
+  if (saved === 'all') { grantAll(); }
+  else if (!saved) {
+    setTimeout(() => { banner.style.display = 'block'; }, 1500);
+  }
+
+  function closeBanner() {
+    banner.style.transition = 'transform .35s ease, opacity .35s';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(100%)';
+    setTimeout(() => { banner.style.display = 'none'; }, 380);
+  }
+
+  accept.addEventListener('click', () => {
+    localStorage.setItem('pirohovoCookies', 'all');
+    grantAll();
+    closeBanner();
+  });
+  decline.addEventListener('click', () => {
+    localStorage.setItem('pirohovoCookies', 'essential');
+    grantEssential();
+    closeBanner();
   });
 })();
