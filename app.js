@@ -58,16 +58,22 @@ tabs.forEach(tab => {
   });
 });
 
-// ── Cursor pirohy ──
+// ── Cursor pirohy (custom SVG — nie Apple emoji) ──
 (function () {
-  const PIROHY = ['🥟', '🥟', '🥟', '🥟', '🫕'];
+  const PIROG_SVG = `<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 34 C8 20 24 10 40 10 C56 10 72 20 72 34 C72 44 58 50 40 50 C22 50 8 44 8 34 Z"
+          fill="rgba(212,168,67,.25)" stroke="#d4a843" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M14 28 C18 20 24 17 30 20" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M30 20 C34 14 40 14 46 18" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M46 18 C52 14 58 17 64 24" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  </svg>`;
   var last = 0;
   var count = 0;
 
   function emitPirog(x, y, burst) {
     const el = document.createElement('span');
     el.className = 'cursor-pirog';
-    el.textContent = PIROHY[Math.floor(Math.random() * PIROHY.length)];
+    el.innerHTML = PIROG_SVG;
     const spread = burst ? 80 : 50;
     const dx = (Math.random() - 0.5) * spread;
     const dy = -(burst ? 60 : 35) - Math.random() * 45;

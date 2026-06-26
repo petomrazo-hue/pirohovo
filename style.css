@@ -236,7 +236,16 @@ body::after {
 }
 
 .hero__logo-sub  { font-size: .6rem; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
-.hero__logo-pirog { font-size: 2.8rem; line-height: 1; filter: drop-shadow(0 0 12px rgba(212,168,67,.4)); }
+.hero__logo-pirog {
+  width: 68px; height: 48px; display: flex; align-items: center; justify-content: center;
+  filter: drop-shadow(0 0 14px rgba(212,168,67,.5));
+  animation: pirogWobble 4s ease-in-out infinite;
+}
+.hero__logo-pirog svg { width: 68px; height: 48px; }
+@keyframes pirogWobble {
+  0%,100% { transform: rotate(-2deg) scale(1); }
+  50%      { transform: rotate(2deg) scale(1.04); }
+}
 .hero__logo-name {
   font-family: var(--serif); font-size: 1.15rem; font-weight: 700;
   letter-spacing: .18em; color: var(--gold);
@@ -626,12 +635,13 @@ body::after {
   position: fixed;
   pointer-events: none;
   z-index: 99999;
-  font-size: 20px;
-  line-height: 1;
+  width: 32px; height: 22px;
+  display: block;
   user-select: none;
   animation: pirogFloat 1s ease-out forwards;
   will-change: transform, opacity;
 }
+.cursor-pirog svg { width: 100%; height: 100%; display: block; }
 @keyframes pirogFloat {
   0%   { opacity: .9; transform: translate(0,0) rotate(0deg) scale(1); }
   100% { opacity: 0;  transform: translate(var(--dx,0px), var(--dy,-55px)) rotate(var(--rot,30deg)) scale(0.45); }
