@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥟</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=7">
   <style>
     .order-page { min-height: 100vh; padding: 100px 0 80px; }
     .order-header { margin-bottom: 48px; }
@@ -132,18 +132,9 @@
 
 <nav class="nav scrolled" id="nav">
   <div class="nav__inner container">
-    <a href="index.html" class="nav__logo">
-      <svg class="nav__pirog-icon" viewBox="0 0 56 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8c060"/><stop offset="1" stop-color="#a87e28"/></linearGradient></defs>
-        <path d="M21 6 C20 4 22 2 21 0.5" stroke="url(#pg2)" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M28 4 C27 2 29 0.5 28 -0.5" stroke="url(#pg2)" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
-        <path d="M35 6 C34 4 36 2 35 0.5" stroke="url(#pg2)" stroke-width="1.1" stroke-linecap="round" opacity=".5"/>
-        <path d="M4 22 C4 13 15 7 28 7 C41 7 52 13 52 22 C52 31 41 37 28 37 C15 37 4 31 4 22 Z" fill="rgba(212,168,67,.1)" stroke="url(#pg2)" stroke-width="1.8" stroke-linejoin="round"/>
-        <path d="M10 18 C14 11 20 9 26 12" stroke="url(#pg2)" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M26 12 C30 7 36 8 42 13" stroke="url(#pg2)" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M10 27 Q28 36 46 27" stroke="rgba(212,168,67,.28)" stroke-width="1" stroke-linecap="round"/>
-      </svg>
-      <span class="nav__logo-text">PIROHO<span class="red">&#9829;</span>O</span>
+    <a href="index.html" class="nav__logo" aria-label="Pirohovo">
+      <img src="images/logo.jpg" alt="" class="nav__logo-img" aria-hidden="true">
+      <span class="nav__logo-text" aria-hidden="true">PIROHO<span class="red">&#9829;</span>O</span>
     </a>
     <div style="display:flex;align-items:center;gap:16px;">
       <a href="index.html#menu" class="btn btn--outline" style="padding:8px 18px;font-size:.82rem;">← Späť na menu</a>
@@ -186,9 +177,9 @@
             </div>
           </div>
 
-          <div class="order-item" data-name="Krevetové v šépiovom ceste" data-price="10.20">
+          <div class="order-item" data-name="Krevetové v sépiovom ceste" data-price="10.20">
             <div class="order-item__info">
-              <div class="order-item__name">Krevetové v šépiovom ceste <span style="background:rgba(192,57,43,.12);color:#e07878;border:1px solid rgba(192,57,43,.25);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:100px;">NOVINKA</span></div>
+              <div class="order-item__name">Krevetové v sépiovom ceste <span style="background:rgba(192,57,43,.12);color:#e07878;border:1px solid rgba(192,57,43,.25);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:100px;">NOVINKA</span></div>
               <div class="order-item__desc">Krevety na bielom víne, orientálna omáčka · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">10,20 €</span>
@@ -215,7 +206,7 @@
           <div class="order-item" data-name="S údeným mäsom" data-price="8.10">
             <div class="order-item__info">
               <div class="order-item__name">S údeným mäsom</div>
-              <div class="order-item__desc">So zelenkou na bede kapusty · 6 ks · 250 g</div>
+              <div class="order-item__desc">So zemiakmi a údeným mäsom, na bielej kapuste · 6 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
@@ -258,7 +249,7 @@
           <div class="order-item" data-name="Perky" data-price="8.10">
             <div class="order-item__info">
               <div class="order-item__name">Perky</div>
-              <div class="order-item__desc">Divkový lekvár, posypka (šnak/orech/strúhanka), maslo · 7 ks · 250 g</div>
+              <div class="order-item__desc">Slivkový lekvár, posypka (mak/orech/strúhanka), maslo · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
@@ -280,15 +271,28 @@
               <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
+
+          <div class="order-item" data-name="Marhuľové" data-price="9.00">
+            <div class="order-item__info">
+              <div class="order-item__name">Marhuľové <span style="background:rgba(120,170,80,.12);color:#8ac56a;border:1px solid rgba(120,170,80,.25);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:100px;">SEZÓNNE</span></div>
+              <div class="order-item__desc">Čerstvé marhule, panko strúhanka, smotanovo-marhuľový krém · 7 ks · 250 g</div>
+            </div>
+            <span class="order-item__price">9,00 €</span>
+            <div class="order-item__qty">
+              <button class="qty-btn qty-minus">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
         </div>
 
         <div class="order-category">
-          <div class="order-cat-label">Šúcance</div>
+          <div class="order-cat-label">Šúľance</div>
 
-          <div class="order-item" data-name="Šúcance sladké" data-price="8.10">
+          <div class="order-item" data-name="Zemiakové šúľance sladké" data-price="8.10">
             <div class="order-item__info">
-              <div class="order-item__name">Zemiakové šúcance sladké</div>
-              <div class="order-item__desc">Posypka podľa výberu, divkový lekvár alebo horúce ovocie · 250 g</div>
+              <div class="order-item__name">Zemiakové šúľance sladké</div>
+              <div class="order-item__desc">Posypka podľa výberu, slivkový lekvár alebo horúce ovocie · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
@@ -298,12 +302,55 @@
             </div>
           </div>
 
-          <div class="order-item" data-name="Šúcance slané" data-price="8.10">
+          <div class="order-item" data-name="Šúľance s kapustou a slaninkou" data-price="8.80">
             <div class="order-item__info">
-              <div class="order-item__name">Zemiakové šúcance slané</div>
-              <div class="order-item__desc">Kyslá kapusta a slanina · 250 g</div>
+              <div class="order-item__name">Šúľance s kapustou a slaninkou</div>
+              <div class="order-item__desc">Kyslosladká kapusta a slaninka · 250 g</div>
             </div>
-            <span class="order-item__price">8,10 €</span>
+            <span class="order-item__price">8,80 €</span>
+            <div class="order-item__qty">
+              <button class="qty-btn qty-minus">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-category">
+          <div class="order-cat-label">Nápoje</div>
+
+          <div class="order-item" data-name="Coca Cola" data-price="2.50">
+            <div class="order-item__info">
+              <div class="order-item__name">Coca Cola</div>
+              <div class="order-item__desc">330 ml</div>
+            </div>
+            <span class="order-item__price">2,50 €</span>
+            <div class="order-item__qty">
+              <button class="qty-btn qty-minus">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
+
+          <div class="order-item" data-name="Minerálna voda" data-price="2.50">
+            <div class="order-item__info">
+              <div class="order-item__name">Minerálna voda</div>
+              <div class="order-item__desc">330 ml</div>
+            </div>
+            <span class="order-item__price">2,50 €</span>
+            <div class="order-item__qty">
+              <button class="qty-btn qty-minus">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
+
+          <div class="order-item" data-name="Domáce šťavy" data-price="2.50">
+            <div class="order-item__info">
+              <div class="order-item__name">Domáce šťavy</div>
+              <div class="order-item__desc">250 ml, ponuka podľa sezóny</div>
+            </div>
+            <span class="order-item__price">2,50 €</span>
             <div class="order-item__qty">
               <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>

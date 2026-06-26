@@ -854,7 +854,7 @@ body::after {
 
 /* ═══════════════ FLOATING ELEMENTS ═══════════════ */
 .float-wa {
-  position: fixed; bottom: 88px; right: 22px; z-index: 9991;
+  position: fixed; bottom: 80px; right: 20px; z-index: 9991;
   width: 56px; height: 56px; border-radius: 50%;
   background: #25d366; color: #fff;
   display: flex; align-items: center; justify-content: center;
@@ -865,7 +865,7 @@ body::after {
 .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
 
 .float-top {
-  position: fixed; bottom: 22px; right: 22px; z-index: 9990;
+  position: fixed; bottom: 20px; right: 20px; z-index: 9990;
   width: 48px; height: 48px; border-radius: 50%;
   background: rgba(20,19,12,.92); color: var(--gold);
   border: 1px solid rgba(212,168,67,.3);
