@@ -174,18 +174,20 @@ body::after {
 }
 .nav__logo:hover { opacity: .85; }
 
-.nav__pirog-icon {
-  width: clamp(28px, 2.6vw, 38px);
-  height: clamp(20px, 1.9vw, 27px);
+.nav__logo-img {
+  width: clamp(34px, 3vw, 44px);
+  height: clamp(34px, 3vw, 44px);
+  border-radius: 50%;
+  object-fit: cover;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 6px rgba(212,168,67,.45));
-  animation: pirogFloat2 5s ease-in-out infinite alternate;
+  border: 1px solid rgba(212,168,67,.2);
+  box-shadow: 0 0 12px rgba(212,168,67,.2);
+  transition: box-shadow .25s, transform .25s;
 }
-@keyframes pirogFloat2 {
-  from { transform: rotate(-3deg) translateY(0); }
-  to   { transform: rotate(3deg) translateY(-2px); }
+.nav__logo:hover .nav__logo-img {
+  box-shadow: 0 0 24px rgba(212,168,67,.4);
+  transform: scale(1.08);
 }
-.nav__logo:hover .nav__pirog-icon { animation-duration: 1.2s; }
 
 .nav__logo-text {
   font-family: var(--serif);
@@ -277,18 +279,17 @@ body::after {
 .hero__particles { position: absolute; inset: 0; pointer-events: none; }
 .hero__content { position: relative; z-index: 1; max-width: 740px; }
 
-/* Logo ring */
+/* Logo ring — originálne logo z IG */
 .hero__logo-ring {
-  width: 200px; height: 200px; border-radius: 50%;
-  background: rgba(8,7,3,.9);
-  border: 1px solid rgba(212,168,67,.2);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px; margin: 0 auto 50px;
+  width: 220px; height: 220px; border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 50px;
   animation: ringGlow 5s ease-in-out infinite alternate;
   box-shadow:
-    0 0 0 1px rgba(212,168,67,.06),
-    0 0 60px rgba(212,168,67,.1),
-    inset 0 1px 0 rgba(212,168,67,.08);
+    0 0 0 2px rgba(212,168,67,.15),
+    0 0 60px rgba(212,168,67,.18),
+    0 0 120px rgba(212,168,67,.08);
+  flex-shrink: 0;
 }
 @keyframes ringGlow {
   from { box-shadow: 0 0 0 1px rgba(212,168,67,.05), 0 0 40px rgba(212,168,67,.08), inset 0 1px 0 rgba(212,168,67,.05); }
@@ -296,15 +297,12 @@ body::after {
 }
 
 .hero__logo-sub  { font-size: .6rem; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
-.hero__logo-pirog {
-  width: 68px; height: 48px; display: flex; align-items: center; justify-content: center;
-  filter: drop-shadow(0 0 14px rgba(212,168,67,.5));
-  animation: pirogWobble 4s ease-in-out infinite;
-}
-.hero__logo-pirog svg { width: 68px; height: 48px; }
-@keyframes pirogWobble {
-  0%,100% { transform: rotate(-2deg) scale(1); }
-  50%      { transform: rotate(2deg) scale(1.04); }
+
+/* Originálne logo v hero ring */
+.hero__logo-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .hero__logo-name {
   font-family: var(--serif); font-size: 1.15rem; font-weight: 700;
