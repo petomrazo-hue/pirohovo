@@ -4,113 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Objednávka – Pirohovo</title>
+  <meta name="theme-color" content="#14130c">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥟</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=5">
   <style>
-    .order-page { min-height: 100vh; padding: 100px 0 60px; }
+    .order-page { min-height: 100vh; padding: 100px 0 80px; }
+    .order-header { margin-bottom: 48px; }
+    .order-back { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: .84rem; margin-bottom: 24px; transition: color .2s; }
+    .order-back:hover { color: var(--gold); }
+    .order-title { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.8rem); color: var(--gold-l); margin-bottom: 8px; }
+    .order-subtitle { color: var(--muted); font-size: .95rem; line-height: 1.7; }
     .order-grid { display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: start; }
-    .order-title { font-family: var(--serif); font-size: 2.4rem; color: var(--gold-l); margin-bottom: 8px; }
-    .order-subtitle { color: var(--muted); margin-bottom: 32px; font-size: .95rem; }
 
-    /* MENU ITEMS */
-    .order-category { margin-bottom: 32px; }
+    /* Progress steps */
+    .order-steps { display: flex; align-items: center; gap: 0; margin-bottom: 40px; }
+    .step-item { display: flex; align-items: center; gap: 10px; font-size: .82rem; color: var(--muted); }
+    .step-item.active { color: var(--gold); }
+    .step-item.done { color: rgba(120,200,120,.8); }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid currentColor;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .78rem; flex-shrink: 0; }
+    .step-item.active .step-num { background: var(--gold); color: #0e0c04; border-color: var(--gold); }
+    .step-item.done .step-num { background: rgba(60,150,80,.15); border-color: rgba(120,200,120,.4); }
+    .step-line { flex: 1; height: 1px; background: var(--border); margin: 0 10px; max-width: 48px; }
+
+    /* Menu categories */
+    .order-category { margin-bottom: 36px; }
     .order-cat-label {
       font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
       color: var(--gold); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 14px;
     }
     .order-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 16px; border-radius: 10px;
-      border: 1px solid transparent;
-      background: var(--bgcard);
-      margin-bottom: 8px; cursor: pointer;
-      transition: border-color .2s, background .2s;
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+      border-radius: 10px; border: 1px solid transparent; background: var(--bgcard);
+      margin-bottom: 8px; cursor: pointer; transition: border-color .2s, background .2s;
     }
     .order-item:hover { border-color: var(--border); }
     .order-item.selected { border-color: var(--gold); background: rgba(212,168,67,.08); }
-    .order-item__name { flex: 1; font-weight: 500; font-size: .95rem; }
-    .order-item__desc { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    .order-item__price { font-weight: 700; color: var(--gold-l); white-space: nowrap; font-family: var(--serif); }
-    .order-item__qty {
-      display: flex; align-items: center; gap: 10px;
-      opacity: 0; pointer-events: none; transition: opacity .2s;
-    }
+    .order-item__info { flex: 1; }
+    .order-item__name { font-weight: 500; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+    .order-item__desc { font-size: .78rem; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+    .order-item__price { font-weight: 700; color: var(--gold-l); white-space: nowrap; font-family: var(--serif); flex-shrink: 0; }
+    .order-item__qty { display: flex; align-items: center; gap: 10px; opacity: 0; pointer-events: none; transition: opacity .2s; flex-shrink: 0; }
     .order-item.selected .order-item__qty { opacity: 1; pointer-events: all; }
-    .qty-btn {
-      width: 28px; height: 28px; border-radius: 50%;
-      border: 1px solid var(--gold); background: none; color: var(--gold);
-      font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background .15s, color .15s;
-    }
+    .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold); background: none; color: var(--gold); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; }
     .qty-btn:hover { background: var(--gold); color: #000; }
     .qty-num { font-weight: 700; min-width: 18px; text-align: center; color: var(--text); }
+    .badge-best { background: rgba(212,168,67,.12); color: var(--gold); border: 1px solid rgba(212,168,67,.25); font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 100px; }
 
-    /* KOŠÍK */
-    .cart-panel {
-      position: sticky; top: 90px;
-      background: var(--bgcard); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px;
-    }
+    /* Košík */
+    .cart-panel { position: sticky; top: 90px; background: var(--bgcard); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
     .cart-title { font-family: var(--serif); font-size: 1.3rem; color: var(--gold-l); margin-bottom: 20px; }
-    .cart-empty { color: var(--muted); font-size: .88rem; text-align: center; padding: 20px 0; line-height: 1.7; }
+    .cart-empty { color: var(--muted); font-size: .88rem; text-align: center; padding: 20px 0; line-height: 1.8; font-style: italic; }
     .cart-items { margin-bottom: 20px; }
-    .cart-row { display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 0; border-bottom: 1px solid rgba(212,168,67,.08); font-size: .88rem; }
+    .cart-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(212,168,67,.08); font-size: .88rem; }
     .cart-row:last-child { border: none; }
-    .cart-row__name { color: var(--text); }
-    .cart-row__price { color: var(--gold); font-weight: 600; }
-    .cart-total { display: flex; justify-content: space-between; font-weight: 700;
-      font-size: 1.05rem; padding: 14px 0; border-top: 1px solid var(--border); margin-bottom: 20px; }
-    .cart-total span:last-child { color: var(--gold-l); }
+    .cart-row-name { color: var(--text); }
+    .cart-row-price { color: var(--gold-l); font-family: var(--serif); font-weight: 700; }
+    .cart-total { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border); font-size: 1.05rem; }
+    .cart-total strong { font-family: var(--serif); color: var(--gold-l); font-size: 1.3rem; }
+    .cart-divider { height: 1px; background: var(--border); margin: 20px 0; }
 
-    /* FORMULÁR */
-    .order-form { display: flex; flex-direction: column; gap: 12px; }
-    .order-form input, .order-form select, .order-form textarea {
-      background: rgba(255,255,255,.05); border: 1px solid var(--border);
-      border-radius: 8px; padding: 12px 14px; color: var(--text);
-      font-family: var(--sans); font-size: .9rem; width: 100%;
-      transition: border-color .2s;
+    /* Forma kontaktu */
+    .form-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 7px; }
+    .form-input {
+      width: 100%; background: rgba(255,248,200,.03); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px; color: var(--text); font-family: var(--sans);
+      font-size: .92rem; outline: none; transition: border-color .2s;
     }
-    .order-form input:focus, .order-form textarea:focus {
-      outline: none; border-color: var(--gold);
-    }
-    .order-form input::placeholder, .order-form textarea::placeholder { color: var(--muted); }
-    .order-type-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .order-type-btn {
-      padding: 11px; border-radius: 8px; border: 1px solid var(--border);
-      background: none; color: var(--muted); cursor: pointer; font-size: .86rem;
-      transition: all .2s; text-align: center; letter-spacing: .04em;
-    }
-    .order-type-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212,168,67,.08); font-weight: 600; }
-    .btn-order {
-      background: var(--gold); color: #0e0c04; border: none; border-radius: 10px;
-      padding: 15px; font-weight: 700; font-size: 1rem; cursor: pointer;
-      width: 100%; transition: background .2s, transform .15s;
-      letter-spacing: .04em;
-    }
-    .btn-order:hover { background: var(--gold-l); transform: translateY(-2px); }
-    .btn-order:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+    .form-input:focus { border-color: var(--gold); }
+    .form-group { margin-bottom: 14px; }
+    .pickup-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pickup-opt { padding: 9px 18px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: var(--sans); font-size: .82rem; cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .pickup-opt.active { background: var(--gold); border-color: var(--gold); color: #0e0c04; font-weight: 700; }
 
-    /* SUCCESS */
-    .order-success { display: none; text-align: center; padding: 30px 20px; }
-    .success-icon {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: rgba(212,168,67,.1); border: 1px solid rgba(212,168,67,.3);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px; font-size: 1.8rem; color: var(--gold);
+    /* WhatsApp objednávka */
+    .btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      width: 100%; padding: 16px 24px; border-radius: 100px;
+      background: #25d366; color: #fff;
+      font-size: 1.02rem; font-weight: 700; text-decoration: none;
+      border: none; cursor: pointer;
+      box-shadow: 0 6px 28px rgba(37,211,102,.35);
+      transition: transform .2s, box-shadow .2s;
+      margin-top: 20px; font-family: var(--sans); letter-spacing: .03em;
     }
-    .order-success h3 { font-family: var(--serif); color: var(--gold-l); margin-bottom: 10px; font-size: 1.4rem; }
-    .order-success p { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(37,211,102,.5); }
+    .btn-wa:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+    .btn-wa svg { flex-shrink: 0; }
 
-    @media (max-width: 860px) {
+    /* Platobné metódy */
+    .payment-methods { margin-top: 16px; }
+    .payment-methods__label { font-size: .7rem; color: var(--muted); text-align: center; margin-bottom: 10px; letter-spacing: .06em; text-transform: uppercase; }
+    .payment-badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .pay-badge {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 8px;
+      border: 1px solid rgba(212,168,67,.15);
+      background: rgba(255,255,255,.03);
+      font-size: .72rem; color: var(--muted); font-weight: 600;
+    }
+
+    .order-note { font-size: .78rem; color: var(--muted); text-align: center; line-height: 1.65; margin-top: 12px; }
+    .order-gdpr { font-size: .74rem; color: rgba(138,128,112,.6); line-height: 1.6; margin-top: 14px; text-align: center; }
+    .order-gdpr a { color: var(--gold); text-decoration: none; }
+
+    /* Odhad času */
+    .eta-badge { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: 10px; background: rgba(212,168,67,.06); border: 1px solid rgba(212,168,67,.14); margin-bottom: 20px; font-size: .84rem; color: var(--muted); }
+    .eta-badge strong { color: var(--gold); }
+
+    @media (max-width: 900px) {
       .order-grid { grid-template-columns: 1fr; }
       .cart-panel { position: static; }
+    }
+    @media (max-width: 600px) {
+      .order-steps { display: none; }
     }
   </style>
 </head>
 <body>
-
 <div class="bg-cinema" aria-hidden="true">
   <div class="bg-slide s1"></div>
   <div class="bg-slide s2"></div>
@@ -119,107 +132,122 @@
 
 <nav class="nav scrolled" id="nav">
   <div class="nav__inner container">
-    <a href="index.html" class="nav__logo">PIROHO<span class="red">&#9829;</span>O</a>
-    <ul class="nav__links" id="navLinks">
-      <li><a href="index.html#menu">Menu</a></li>
-      <li><a href="index.html#galeria">Galéria</a></li>
-      <li><a href="index.html#o-nas">O nás</a></li>
-      <li><a href="index.html#kde-nas">Kde nás nájdete</a></li>
-      <li><a href="tel:0915671603" class="nav__cta">0915 671 603</a></li>
-    </ul>
-    <button class="nav__burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="index.html" class="nav__logo">
+      <svg class="nav__pirog-icon" viewBox="0 0 56 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8c060"/><stop offset="1" stop-color="#a87e28"/></linearGradient></defs>
+        <path d="M21 6 C20 4 22 2 21 0.5" stroke="url(#pg2)" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M28 4 C27 2 29 0.5 28 -0.5" stroke="url(#pg2)" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
+        <path d="M35 6 C34 4 36 2 35 0.5" stroke="url(#pg2)" stroke-width="1.1" stroke-linecap="round" opacity=".5"/>
+        <path d="M4 22 C4 13 15 7 28 7 C41 7 52 13 52 22 C52 31 41 37 28 37 C15 37 4 31 4 22 Z" fill="rgba(212,168,67,.1)" stroke="url(#pg2)" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M10 18 C14 11 20 9 26 12" stroke="url(#pg2)" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M26 12 C30 7 36 8 42 13" stroke="url(#pg2)" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M10 27 Q28 36 46 27" stroke="rgba(212,168,67,.28)" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <span class="nav__logo-text">PIROHO<span class="red">&#9829;</span>O</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="index.html#menu" class="btn btn--outline" style="padding:8px 18px;font-size:.82rem;">← Späť na menu</a>
+    </div>
   </div>
 </nav>
 
-<main class="order-page">
+<div class="order-page">
   <div class="container">
-    <h1 class="order-title">Objednať online</h1>
-    <p class="order-subtitle">Vyber si, my pripravíme. Vyzdvihnutie alebo rozvoz po Bratislave.</p>
+    <div class="order-header">
+      <h1 class="order-title">Objednajte cez WhatsApp</h1>
+      <p class="order-subtitle">Vyberte položky, vyplňte meno a spôsob prevzatia. Objednávku odošleme priamo cez WhatsApp — odpovieme do pár minút.</p>
+    </div>
+
+    <div class="order-steps">
+      <div class="step-item active"><span class="step-num">1</span><span>Výber jedál</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><span class="step-num">2</span><span>Kontakt</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><span class="step-num">3</span><span>WhatsApp</span></div>
+    </div>
 
     <div class="order-grid">
-      <!-- MENU -->
-      <div class="menu-side">
+      <!-- MENU NA VÝBER -->
+      <div class="order-menu">
 
         <div class="order-category">
           <div class="order-cat-label">Slané pirohy</div>
 
-          <div class="order-item" data-id="bryndzove" data-name="Bryndzové" data-price="10.20">
-            <div style="flex:1">
-              <div class="order-item__name">Bryndzové</div>
-              <div class="order-item__desc">So slaninou, kyslou smotanou a jemnou cibuľkou / pažítkou</div>
+          <div class="order-item" data-name="Bryndzové" data-price="10.20">
+            <div class="order-item__info">
+              <div class="order-item__name">Bryndzové <span class="badge-best">★ Bestseller</span></div>
+              <div class="order-item__desc">So slaninou, kyslou smotanou a pažítkou · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">10,20 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus" aria-label="Menej">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus" aria-label="Viac">+</button>
             </div>
           </div>
 
-          <div class="order-item" data-id="udeniaky" data-name="Údeniaky" data-price="8.30">
-            <div style="flex:1">
+          <div class="order-item" data-name="Krevetové v šépiovom ceste" data-price="10.20">
+            <div class="order-item__info">
+              <div class="order-item__name">Krevetové v šépiovom ceste <span style="background:rgba(192,57,43,.12);color:#e07878;border:1px solid rgba(192,57,43,.25);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:100px;">NOVINKA</span></div>
+              <div class="order-item__desc">Krevety na bielom víne, orientálna omáčka · 7 ks · 250 g</div>
+            </div>
+            <span class="order-item__price">10,20 €</span>
+            <div class="order-item__qty">
+              <button class="qty-btn qty-minus" aria-label="Menej">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn qty-plus" aria-label="Viac">+</button>
+            </div>
+          </div>
+
+          <div class="order-item" data-name="Údeniaky" data-price="8.30">
+            <div class="order-item__info">
               <div class="order-item__name">Údeniaky</div>
-              <div class="order-item__desc">Domácej výroby so zemiakmi a údeným oštiepkom, kyslá smotana</div>
+              <div class="order-item__desc">So zelenkou a údeným obložkom, kyslá smotana · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,30 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
 
-          <div class="order-item" data-id="krevety" data-name="Krevetové v šépiovom ceste" data-price="10.20">
-            <div style="flex:1">
-              <div class="order-item__name">Krevetové v šépiovom ceste</div>
-              <div class="order-item__desc">Krevety na bielom víne, koriander, cesnak, chilli, orientálna omáčka</div>
-            </div>
-            <span class="order-item__price">10,20 €</span>
-            <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
-              <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
-            </div>
-          </div>
-
-          <div class="order-item" data-id="udene-maso" data-name="S údeným mäsom" data-price="8.10">
-            <div style="flex:1">
+          <div class="order-item" data-name="S údeným mäsom" data-price="8.10">
+            <div class="order-item__info">
               <div class="order-item__name">S údeným mäsom</div>
-              <div class="order-item__desc">So zelenkou a údeným mäsom, podávané na bede kapusty</div>
+              <div class="order-item__desc">So zelenkou na bede kapusty · 6 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
 
-          <div class="order-item" data-id="spenatove" data-name="Špenátové s ricottou" data-price="8.10">
-            <div style="flex:1">
-              <div class="order-item__name">Špenátové s ricottou</div>
-              <div class="order-item__desc">Z baby špenátu a ricotty, podávané s jemným cesnakovým dipom</div>
+          <div class="order-item" data-name="Špenátové s Ricottou" data-price="8.10">
+            <div class="order-item__info">
+              <div class="order-item__name">Špenátové s Ricottou</div>
+              <div class="order-item__desc">Baby špenát, ricotta, cesnakový dip · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
 
-          <div class="order-item" data-id="tatarcane-slane" data-name="Tatarčané slané" data-price="8.20">
-            <div style="flex:1">
-              <div class="order-item__name">Tatarčané slané</div>
-              <div class="order-item__desc">Pohánkové cesto, tvaroh, zelenka, slanina a jemná cibuľka</div>
+          <div class="order-item" data-name="Tatárčané slané" data-price="8.20">
+            <div class="order-item__info">
+              <div class="order-item__name">Tatárčané slané</div>
+              <div class="order-item__desc">Pohánkové cesto, tvaroh, zelenka, slanina · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,20 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
         </div>
@@ -227,29 +255,29 @@
         <div class="order-category">
           <div class="order-cat-label">Sladké pirohy</div>
 
-          <div class="order-item" data-id="perky" data-name="Perky" data-price="8.10">
-            <div style="flex:1">
+          <div class="order-item" data-name="Perky" data-price="8.10">
+            <div class="order-item__info">
               <div class="order-item__name">Perky</div>
-              <div class="order-item__desc">Divkový lekvár, posypka podľa výberu (mak / orech / strúhanka), preliata maslom</div>
+              <div class="order-item__desc">Divkový lekvár, posypka (šnak/orech/strúhanka), maslo · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
 
-          <div class="order-item" data-id="tatarcane-sladke" data-name="Tatarčané sladké" data-price="8.20">
-            <div style="flex:1">
-              <div class="order-item__name">Tatarčané sladké</div>
-              <div class="order-item__desc">Pohánkové cesto, tvaroh, zelenka, preliatie horúcim ovocím</div>
+          <div class="order-item" data-name="Tatárčané sladké" data-price="8.20">
+            <div class="order-item__info">
+              <div class="order-item__name">Tatárčané sladké</div>
+              <div class="order-item__desc">Pohánkové cesto, tvaroh, zelenka, horúce ovocie · 7 ks · 250 g</div>
             </div>
             <span class="order-item__price">8,20 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
         </div>
@@ -257,226 +285,224 @@
         <div class="order-category">
           <div class="order-cat-label">Šúcance</div>
 
-          <div class="order-item" data-id="sucance-slane" data-name="Zemiakové šúcance slané" data-price="8.10">
-            <div style="flex:1">
-              <div class="order-item__name">Zemiakové šúcance slané</div>
-              <div class="order-item__desc">Kyslá kapusta a slanina</div>
-            </div>
-            <span class="order-item__price">8,10 €</span>
-            <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
-              <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
-            </div>
-          </div>
-
-          <div class="order-item" data-id="sucance-sladke" data-name="Zemiakové šúcance sladké" data-price="8.10">
-            <div style="flex:1">
+          <div class="order-item" data-name="Šúcance sladké" data-price="8.10">
+            <div class="order-item__info">
               <div class="order-item__name">Zemiakové šúcance sladké</div>
-              <div class="order-item__desc">Posypka podľa výberu, preliatie maslom s lekvárom alebo horúcim ovocím</div>
+              <div class="order-item__desc">Posypka podľa výberu, divkový lekvár alebo horúce ovocie · 250 g</div>
             </div>
             <span class="order-item__price">8,10 €</span>
             <div class="order-item__qty">
-              <button class="qty-btn" data-action="minus">−</button>
+              <button class="qty-btn qty-minus">−</button>
               <span class="qty-num">1</span>
-              <button class="qty-btn" data-action="plus">+</button>
+              <button class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
+
+          <div class="order-item" data-name="Šúcance slané" data-price="8.10">
+            <div class="order-item__info">
+              <div class="order-item__name">Zemiakové šúcance slané</div>
+              <div class="order-item__desc">Kyslá kapusta a slanina · 250 g</div>
+            </div>
+            <span class="order-item__price">8,10 €</span>
+            <div class="order-item__qty">
+              <button class="qty-btn qty-minus">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn qty-plus">+</button>
             </div>
           </div>
         </div>
 
-      </div><!-- /menu-side -->
+      </div><!-- /order-menu -->
 
-      <!-- KOŠÍK -->
+      <!-- KOŠÍK + KONTAKT -->
       <div class="cart-panel">
-        <div id="cartContent">
-          <h2 class="cart-title">Tvoja objednávka</h2>
-          <div class="cart-items" id="cartItems">
-            <p class="cart-empty" id="cartEmpty">Zatiaľ nič nevybrané.<br>Klikni na položku vľavo.</p>
-          </div>
-          <div class="cart-total" id="cartTotal" style="display:none">
-            <span>Spolu</span>
-            <span id="cartTotalAmount">0,00 €</span>
-          </div>
-
-          <form class="order-form" id="orderForm">
-            <div class="order-type-row">
-              <button type="button" class="order-type-btn active" data-type="pickup">Vyzdvihnutie</button>
-              <button type="button" class="order-type-btn" data-type="delivery">Rozvoz</button>
-            </div>
-            <input type="hidden" name="order_type" id="orderType" value="pickup">
-            <input type="text" name="name" id="custName" placeholder="Meno a priezvisko" required>
-            <input type="tel" name="phone" id="custPhone" placeholder="Telefón (+421...)" required>
-            <div id="addressField" style="display:none">
-              <input type="text" name="address" id="custAddress" placeholder="Adresa doručenia, Bratislava">
-            </div>
-            <input type="text" name="note" placeholder="Poznámka (nepovinné)">
-            <input type="hidden" name="access_key" value="DOPLNIT_WEB3FORMS_KEY">
-            <input type="hidden" name="subject" id="orderSubject" value="Nová objednávka – Pirohovo">
-            <input type="hidden" name="from_name" value="Pirohovo Objednávky">
-            <textarea name="order_items" id="orderItems" style="display:none"></textarea>
-            <button type="submit" class="btn-order" id="submitBtn" disabled>
-              Odoslať objednávku
-            </button>
-          </form>
+        <div class="cart-title">Vaša objednávka</div>
+        <div class="cart-items" id="cartItems">
+          <div class="cart-empty" id="cartEmpty">Pridajte si pirohy — kliknite na položku v menu.</div>
+        </div>
+        <div class="cart-total" id="cartTotal" style="display:none;">
+          <span>Celkom</span>
+          <strong id="cartSum">0,00 €</strong>
         </div>
 
-        <div class="order-success" id="orderSuccess">
-          <div class="success-icon">✓</div>
-          <h3>Objednávka prijatá!</h3>
-          <p>Zavoláme vám na <strong id="confirmPhone"></strong> s potvrdením.<br><br>Ďakujeme a tešíme sa na vás!</p>
-          <br>
-          <a href="index.html" style="color:var(--gold);text-decoration:none;font-size:.9rem;letter-spacing:.04em">← Späť na hlavnú stránku</a>
+        <div class="cart-divider"></div>
+
+        <!-- Spôsob prevzatia -->
+        <div class="form-group">
+          <label class="form-label">Spôsob prevzatia</label>
+          <div class="pickup-options">
+            <button class="pickup-opt active" data-type="Vyzdvihnutie na prevádzke">Na mieste</button>
+            <button class="pickup-opt" data-type="Drive-through">Drive-through</button>
+            <button class="pickup-opt" data-type="Rozvoz">Rozvoz domov</button>
+          </div>
         </div>
+
+        <!-- Meno -->
+        <div class="form-group">
+          <label class="form-label" for="custName">Vaše meno</label>
+          <input type="text" id="custName" class="form-input" placeholder="Napr. Jana" autocomplete="given-name">
+        </div>
+
+        <!-- Adresa (len pri rozvozi) -->
+        <div class="form-group" id="addrGroup" style="display:none;">
+          <label class="form-label" for="custAddr">Adresa doručenia</label>
+          <input type="text" id="custAddr" class="form-input" placeholder="Ulica, číslo, mesto" autocomplete="street-address">
+        </div>
+
+        <!-- ETA -->
+        <div class="eta-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Odhadovaný čas prípravy: <strong>~20 min</strong></span>
+        </div>
+
+        <!-- WhatsApp button -->
+        <button class="btn-wa" id="waBtn" disabled>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Objednať cez WhatsApp
+        </button>
+
+        <!-- Platobné metódy -->
+        <div class="payment-methods">
+          <div class="payment-methods__label">Akceptujeme pri prevzatí</div>
+          <div class="payment-badges">
+            <span class="pay-badge">
+              <!-- Apple Pay icon -->
+              <svg width="32" height="14" viewBox="0 0 52 22" fill="currentColor" opacity=".8"><path d="M9.5 3.2c-.7.8-1.8 1.5-2.8 1.4-.1-1.1.4-2.3 1-3C8.5.7 9.7.1 10.6 0c.1 1.1-.3 2.3-1.1 3.2zm1 1.6c-1.5-.1-2.9.9-3.6.9-.8 0-1.9-.8-3.2-.8C1.9 5 0 6.2 0 8.8c0 2.5 2 7.6 3.6 7.6.7 0 1.3-.7 2.5-.7 1.2 0 1.6.7 2.6.7 1.6 0 3.3-4.9 3.3-4.9s-1.3-.5-1.3-2.1c0-1.3 1-2 1-2s-.7-1-1.7-1c-.1 0-.2 0-.5 0zm8.3-3.8v15.2h2.1V11h2.8c2.6 0 4.4-1.7 4.4-4.4 0-2.7-1.8-4.3-4.3-4.3l-5 .1v.3-.3zm2 1.7h2.3c1.7 0 2.7.9 2.7 2.5 0 1.6-1 2.6-2.7 2.6h-2.3V4.7zm10 10.3c0-1.9 1.4-3 4-3.2l2.9-.2v-.8c0-1.2-.7-1.8-2.1-1.8-1.1 0-1.9.5-2.1 1.4h-1.9c.1-1.7 1.7-3 4.1-3 2.4 0 3.9 1.2 3.9 3.2v6.7h-1.9V16h-.1c-.6 1.1-1.7 1.7-3 1.7-1.8 0-3.2-1.1-3.2-2.9l.4.2zm7-.9v-.9l-2.6.2c-1.4.1-2.1.7-2.1 1.6 0 .9.8 1.5 1.9 1.5 1.6 0 2.8-1.1 2.8-2.4zm4.6 7.4v-1.7c.2 0 .5.1.7.1 1 0 1.6-.4 1.9-1.5l.2-.6L40 9.6h2.2l2.4 7.9h.1l2.4-7.9h2.1L44.9 19c-.9 2.4-2 3.2-4.1 3.2-.3 0-.9 0-1.2-.2l-.3.4z"/></svg>
+              Apple Pay
+            </span>
+            <span class="pay-badge">
+              <!-- Google Pay icon -->
+              <svg width="32" height="14" viewBox="0 0 62 24" fill="none" opacity=".8"><text y="17" font-family="Arial,sans-serif" font-size="14" font-weight="700"><tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC05">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan></text><text x="36" y="17" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="currentColor" opacity=".75"> Pay</text></svg>
+            </span>
+            <span class="pay-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Karta
+            </span>
+            <span class="pay-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+              Hotovosť
+            </span>
+          </div>
+        </div>
+
+        <p class="order-gdpr">Odoslaním objednávky súhlasíte so <a href="vop.html">VOP</a> a spracovaním údajov podľa <a href="gdpr.html">GDPR</a>. Kontaktné údaje použijeme len na vybavenie objednávky.</p>
       </div>
-    </div>
+
+    </div><!-- /order-grid -->
   </div>
-</main>
+</div>
 
 <script>
+const WA_NUMBER = '421915671603';
 const cart = {};
 
+// Výber položiek
 document.querySelectorAll('.order-item').forEach(item => {
   item.addEventListener('click', function(e) {
-    if (e.target.closest('.qty-btn')) return;
-    const id = this.dataset.id;
-    if (cart[id]) {
-      delete cart[id];
-      this.classList.remove('selected');
-    } else {
-      cart[id] = { name: this.dataset.name, price: parseFloat(this.dataset.price), qty: 1 };
+    if (e.target.closest('.order-item__qty')) return;
+    const name = this.dataset.name;
+    const price = parseFloat(this.dataset.price);
+    if (!cart[name]) {
       this.classList.add('selected');
+      cart[name] = { price, qty: 1 };
+    } else {
+      this.classList.remove('selected');
+      delete cart[name];
     }
-    updateCart();
+    renderCart();
   });
 });
 
+// Qty tlačidlá
 document.querySelectorAll('.order-item').forEach(item => {
-  item.querySelectorAll('.qty-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const id = item.dataset.id;
-      if (!cart[id]) return;
-      if (this.dataset.action === 'plus') {
-        cart[id].qty++;
-      } else {
-        cart[id].qty--;
-        if (cart[id].qty <= 0) {
-          delete cart[id];
-          item.classList.remove('selected');
-        }
-      }
-      const qtyEl = item.querySelector('.qty-num');
-      if (cart[id]) qtyEl.textContent = cart[id].qty;
-      updateCart();
-    });
+  const minus = item.querySelector('.qty-minus');
+  const plus  = item.querySelector('.qty-plus');
+  const num   = item.querySelector('.qty-num');
+  if (!minus) return;
+  plus.addEventListener('click', e => {
+    e.stopPropagation();
+    const name = item.dataset.name;
+    if (cart[name]) { cart[name].qty++; num.textContent = cart[name].qty; renderCart(); }
+  });
+  minus.addEventListener('click', e => {
+    e.stopPropagation();
+    const name = item.dataset.name;
+    if (cart[name]) {
+      if (cart[name].qty > 1) { cart[name].qty--; num.textContent = cart[name].qty; }
+      else { item.classList.remove('selected'); delete cart[name]; num.textContent = 1; }
+      renderCart();
+    }
   });
 });
 
-function updateCart() {
-  const ids = Object.keys(cart);
+function renderCart() {
+  const keys = Object.keys(cart);
   const empty = document.getElementById('cartEmpty');
-  const itemsEl = document.getElementById('cartItems');
-  const totalEl = document.getElementById('cartTotal');
-  const submitBtn = document.getElementById('submitBtn');
+  const items = document.getElementById('cartItems');
+  const total = document.getElementById('cartTotal');
+  const sum   = document.getElementById('cartSum');
+  const waBtn = document.getElementById('waBtn');
 
-  if (ids.length === 0) {
-    empty.style.display = 'block';
-    totalEl.style.display = 'none';
-    submitBtn.disabled = true;
-    itemsEl.innerHTML = '';
-    itemsEl.appendChild(empty);
+  // vymaž staré riadky
+  items.querySelectorAll('.cart-row').forEach(r => r.remove());
+
+  if (!keys.length) {
+    empty.style.display = '';
+    total.style.display = 'none';
+    waBtn.disabled = true;
     return;
   }
-
   empty.style.display = 'none';
-  let html = '';
-  let total = 0;
-  ids.forEach(id => {
-    const it = cart[id];
-    const sub = it.price * it.qty;
-    total += sub;
-    html += `<div class="cart-row">
-      <span class="cart-row__name">${it.qty}× ${it.name}</span>
-      <span class="cart-row__price">${sub.toFixed(2).replace('.',',')} €</span>
-    </div>`;
-  });
-  itemsEl.innerHTML = html;
-  document.getElementById('cartTotalAmount').textContent = total.toFixed(2).replace('.',',') + ' €';
-  totalEl.style.display = 'flex';
-  submitBtn.disabled = false;
+  total.style.display = 'flex';
 
-  const lines = ids.map(id => `${cart[id].qty}× ${cart[id].name} — ${(cart[id].price * cart[id].qty).toFixed(2)} €`);
-  lines.push('');
-  lines.push('SPOLU: ' + total.toFixed(2) + ' €');
-  document.getElementById('orderItems').value = lines.join('\n');
-  document.getElementById('orderSubject').value = `Objednávka ${total.toFixed(2)} € – Pirohovo`;
+  let totalAmt = 0;
+  keys.forEach(k => {
+    const row = document.createElement('div');
+    row.className = 'cart-row';
+    const subtotal = cart[k].price * cart[k].qty;
+    totalAmt += subtotal;
+    row.innerHTML = `<span class="cart-row-name">${k} ×${cart[k].qty}</span><span class="cart-row-price">${subtotal.toFixed(2).replace('.',',')} €</span>`;
+    items.appendChild(row);
+  });
+  sum.textContent = totalAmt.toFixed(2).replace('.',',') + ' €';
+  waBtn.disabled = false;
 }
 
-document.querySelectorAll('.order-type-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.order-type-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    const type = this.dataset.type;
-    document.getElementById('orderType').value = type;
-    document.getElementById('addressField').style.display = type === 'delivery' ? 'block' : 'none';
+// Pickup options
+let pickupType = 'Vyzdvihnutie na prevádzke';
+document.querySelectorAll('.pickup-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pickup-opt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    pickupType = btn.dataset.type;
+    document.getElementById('addrGroup').style.display = pickupType === 'Rozvoz' ? 'block' : 'none';
   });
 });
 
-document.getElementById('orderForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  if (Object.keys(cart).length === 0) return;
-
-  btn.disabled = true;
-  btn.textContent = 'Odosiela sa…';
-
-  const data = new FormData(this);
-  const name = document.getElementById('custName').value;
-  const phone = document.getElementById('custPhone').value;
-  data.set('subject', `Objednávka od ${name} – Pirohovo`);
-  data.set('message', `ZÁKAZNÍK: ${name}\nTEL: ${phone}\nTYP: ${document.getElementById('orderType').value === 'delivery' ? 'Rozvoz' : 'Vyzdvihnutie'}\n\nPOLOŽKY:\n${document.getElementById('orderItems').value}`);
-
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-    const json = await res.json();
-    if (json.success) {
-      document.getElementById('cartContent').style.display = 'none';
-      document.getElementById('confirmPhone').textContent = phone;
-      document.getElementById('orderSuccess').style.display = 'block';
-    } else {
-      throw new Error(json.message);
-    }
-  } catch (err) {
-    btn.disabled = false;
-    btn.textContent = 'Odoslať objednávku';
-    alert('Chyba: ' + err.message + '\n\nZavolajte nám na 0915 671 603');
-  }
+// Enable WhatsApp button after name
+document.getElementById('custName').addEventListener('input', function() {
+  const waBtn = document.getElementById('waBtn');
+  const hasCart = Object.keys(cart).length > 0;
+  waBtn.disabled = !(hasCart && this.value.trim().length > 1);
 });
 
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+// WhatsApp send
+document.getElementById('waBtn').addEventListener('click', () => {
+  const name = document.getElementById('custName').value.trim();
+  const addr = document.getElementById('custAddr').value.trim();
+  const items = Object.entries(cart).map(([k,v]) =>
+    `  • ${k} ×${v.qty} — ${(v.price*v.qty).toFixed(2).replace('.',',')} €`
+  ).join('\n');
+  const total = Object.values(cart).reduce((s,v) => s + v.price*v.qty, 0).toFixed(2).replace('.',',');
+  let msg = `Dobrý deň! Chcem si objednať z Pirohovo:\n\n${items}\n\nCelkom: ${total} €\nSpôsob: ${pickupType}`;
+  if (addr) msg += `\nAdresa: ${addr}`;
+  msg += `\nMeno: ${name}\n\nĎakujem!`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+});
 
-(function () {
-  const PIROHY = ['🥟','🥟','🥟'];
-  var last = 0;
-  function emit(x, y) {
-    const el = document.createElement('span');
-    el.className = 'cursor-pirog';
-    el.textContent = PIROHY[Math.floor(Math.random() * PIROHY.length)];
-    el.style.left = x + 'px'; el.style.top = y + 'px';
-    el.style.setProperty('--dx', (Math.random()-.5)*50 + 'px');
-    el.style.setProperty('--dy', -(30+Math.random()*45) + 'px');
-    el.style.setProperty('--rot', (Math.random()<.5?-1:1)*(20+Math.random()*40)+'deg');
-    document.body.appendChild(el);
-    el.addEventListener('animationend', () => el.remove());
-  }
-  window.addEventListener('mousemove', e => { const n=Date.now(); if(n-last<85)return; last=n; emit(e.clientX,e.clientY); }, {passive:true});
-  window.addEventListener('click', e => {
-    for(let i=0;i<4;i++) setTimeout(()=>emit(e.clientX+(Math.random()*30-15),e.clientY+(Math.random()*20-10)),i*50);
-  });
-})();
+// Dynamic year
+const yr = document.getElementById('year');
+if (yr) yr.textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>

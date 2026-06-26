@@ -68,9 +68,51 @@ body::after {
 
 .bg-overlay {
   position: fixed; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(14,12,6,.78) 0%, rgba(12,10,4,.68) 60%, rgba(20,19,12,.85) 100%);
+  background: linear-gradient(180deg, rgba(14,12,6,.68) 0%, rgba(12,10,4,.55) 50%, rgba(20,19,12,.82) 100%);
   pointer-events: none;
 }
+
+/* Hero SVG pirohy dekorácie */
+.hero__decos {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero__deco {
+  position: absolute;
+  animation: decoFloat linear infinite;
+}
+.hero__deco--1 {
+  width: 110px; top: 12%; left: 6%;
+  transform: rotate(-18deg);
+  animation-duration: 14s;
+  animation-delay: 0s;
+}
+.hero__deco--2 {
+  width: 80px; top: 20%; right: 8%;
+  transform: rotate(14deg);
+  animation-duration: 18s;
+  animation-delay: -5s;
+}
+.hero__deco--3 {
+  width: 90px; bottom: 28%; left: 12%;
+  transform: rotate(8deg);
+  animation-duration: 16s;
+  animation-delay: -9s;
+}
+.hero__deco--4 {
+  width: 70px; bottom: 22%; right: 6%;
+  transform: rotate(-22deg);
+  animation-duration: 20s;
+  animation-delay: -3s;
+}
+@keyframes decoFloat {
+  0%,100% { transform: translateY(0) rotate(var(--r, -15deg)) scale(1); }
+  33%      { transform: translateY(-18px) rotate(calc(var(--r, -15deg) + 8deg)) scale(1.05); }
+  66%      { transform: translateY(8px) rotate(calc(var(--r, -15deg) - 5deg)) scale(.96); }
+}
+.hero__deco--1 { --r: -18deg; }
+.hero__deco--2 { --r: 14deg; }
+.hero__deco--3 { --r: 8deg; }
+.hero__deco--4 { --r: -22deg; }
 
 .section          { background: rgba(18,17,11,.84); }
 .gallery-section  { background: rgba(16,15,9,.88); }
@@ -126,15 +168,33 @@ body::after {
 .nav__inner { display: flex; align-items: center; justify-content: space-between; }
 
 .nav__logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.nav__logo:hover { opacity: .85; }
+
+.nav__pirog-icon {
+  width: clamp(28px, 2.6vw, 38px);
+  height: clamp(20px, 1.9vw, 27px);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(212,168,67,.45));
+  animation: pirogFloat2 5s ease-in-out infinite alternate;
+}
+@keyframes pirogFloat2 {
+  from { transform: rotate(-3deg) translateY(0); }
+  to   { transform: rotate(3deg) translateY(-2px); }
+}
+.nav__logo:hover .nav__pirog-icon { animation-duration: 1.2s; }
+
+.nav__logo-text {
   font-family: var(--serif);
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
   font-weight: 700;
   letter-spacing: .12em;
   color: var(--gold);
-  text-decoration: none;
-  transition: color .2s;
+  white-space: nowrap;
 }
-.nav__logo:hover { color: var(--gold-l); }
 
 .nav__links {
   display: flex; align-items: center; gap: 32px; list-style: none;
