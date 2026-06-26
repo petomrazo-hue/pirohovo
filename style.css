@@ -17,6 +17,7 @@
   --r:         14px;
   --max:       1200px;
   --serif:     'Playfair Display', Georgia, serif;
+  --display:   'Bebas Neue', 'Playfair Display', sans-serif;
   --sans:      'Inter', system-ui, sans-serif;
 }
 
@@ -199,10 +200,10 @@ body::after {
 }
 
 .nav__logo-text {
-  font-family: var(--serif);
-  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
-  font-weight: 700;
-  letter-spacing: .12em;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: .15em;
   color: var(--gold);
   white-space: nowrap;
 }
@@ -321,13 +322,19 @@ body::after {
 .hero__meta-sep { color: rgba(212,168,67,.3); }
 
 .hero__title {
-  font-family: var(--serif);
-  font-size: clamp(2.8rem, 6.5vw, 5rem);
-  font-weight: 700; line-height: 1.06;
+  font-family: var(--display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400; line-height: 1.0;
+  letter-spacing: .04em; text-transform: uppercase;
   color: var(--text); margin-bottom: 22px;
   text-shadow: 0 2px 40px rgba(0,0,0,.5);
 }
-.hero__title em { color: var(--gold); font-style: italic; }
+.hero__title em {
+  font-family: var(--serif);
+  font-style: italic; text-transform: none;
+  letter-spacing: normal; font-size: .78em;
+  color: var(--gold);
+}
 
 .hero__sub {
   font-size: 1.05rem; color: var(--muted);
@@ -390,11 +397,18 @@ body::after {
 
 .sec-head { text-align: center; margin-bottom: 60px; }
 .sec-head h2 {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  font-weight: 700; line-height: 1.12; margin-bottom: 14px;
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400; line-height: 1.05;
+  letter-spacing: .06em; text-transform: uppercase;
+  margin-bottom: 14px;
 }
-.sec-head h2 em { color: var(--gold); font-style: italic; }
+.sec-head h2 em {
+  font-family: var(--serif);
+  font-style: italic; text-transform: none;
+  letter-spacing: normal; font-size: .76em;
+  color: var(--gold);
+}
 .sec-head p { font-size: .97rem; color: var(--muted); max-width: 440px; margin: 0 auto; }
 
 /* ═══════════════ MENU ═══════════════ */
@@ -680,8 +694,8 @@ body::after {
 }
 .footer__brand { display: flex; flex-direction: column; gap: 4px; }
 .footer__logo {
-  font-family: var(--serif); font-size: 1.35rem;
-  font-weight: 700; letter-spacing: .12em; color: var(--gold);
+  font-family: var(--display); font-size: 1.6rem;
+  font-weight: 400; letter-spacing: .15em; color: var(--gold);
 }
 .footer__tag { font-size: .76rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 .footer__socials { display: flex; gap: 18px; }
@@ -727,7 +741,7 @@ body::after {
   .kde-nas__map { height: 380px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .nav__links {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(20,19,12,.98); backdrop-filter: blur(24px);
@@ -738,6 +752,9 @@ body::after {
   .nav__links.open { transform: translateX(0); }
   .nav__links a { font-size: 1.2rem; }
   .nav__burger { display: flex; z-index: 101; position: relative; }
+}
+
+@media (max-width: 768px) {
   .section { padding: 72px 0; }
   .hero__title { font-size: clamp(2.2rem, 9vw, 3.2rem); }
   .menu-grid { grid-template-columns: 1fr; }

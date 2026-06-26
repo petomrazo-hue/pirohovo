@@ -29,6 +29,24 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[redirects]]
+  from = "http://pirohovo.eu/*"
+  to   = "https://pirohovo.eu/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "http://www.pirohovo.eu/*"
+  to   = "https://pirohovo.eu/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://www.pirohovo.eu/*"
+  to   = "https://pirohovo.eu/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
   from = "/order"
   to = "/order.html"
   status = 301
