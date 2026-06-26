@@ -1,13 +1,370 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pirohovo</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pirohovo – Varíme s láskou | Bratislava</title>
+  <meta name="description" content="Poctivé domáce pirohy z vlastnej výroby. Prešovská 38B, Bratislava. Otvorené Ut–Ne 11:00–20:00. Tel: 0915 671 603.">
+  <meta property="og:title" content="Pirohovo – Varíme s láskou">
+  <meta property="og:description" content="Poctivé domáce pirohy z vlastnej výroby v Bratislave. Prešovská 38B. Ut–Ne 11:00–20:00.">
+  <meta property="og:type" content="restaurant">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1">
 </head>
 <body>
-  <h1>Pirohovo</h1>
-  <script src="app.js"></script>
+
+<!-- ═══════════════ CINEMATIC BACKGROUND ═══════════════ -->
+<div class="bg-cinema" aria-hidden="true">
+  <!-- PLACEHOLDER slides — nahraď src="" skutočnými fotkám z IG/FB -->
+  <!-- Napr: style="background-image:url('images/bg1.jpg')" -->
+  <div class="bg-slide s1"></div>
+  <div class="bg-slide s2"></div>
+  <div class="bg-slide s3"></div>
+  <div class="bg-slide s4"></div>
+  <div class="bg-slide s5"></div>
+</div>
+<div class="bg-overlay" aria-hidden="true"></div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav__inner container">
+    <a href="#" class="nav__logo">PIROHO<span class="red">♥</span>O</a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#galeria">Galéria</a></li>
+      <li><a href="#o-nas">O nás</a></li>
+      <li><a href="#kde-nas">Kde nás nájdete</a></li>
+      <li><a href="tel:0915671603" class="nav__cta">0915 671 603</a></li>
+    </ul>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="home">
+  <div class="hero__glow"></div>
+  <div class="hero__particles" id="particles"></div>
+  <div class="hero__content">
+    <div class="hero__logo-ring">
+      <span class="hero__logo-sub">VARÍME S LÁSKOU</span>
+      <div class="hero__logo-pirog">🥟</div>
+      <span class="hero__logo-name">PIROHO<span class="red">♥</span>O</span>
+    </div>
+    <h1 class="hero__title">Poctivé domáce<br><em>pirohy</em></h1>
+    <p class="hero__sub">Zemiakové cesto plnené domácimi plnkami. Každý deň čerstvé, každý pirog ručne tvarovaný.</p>
+    <div class="hero__ctas">
+      <a href="#menu" class="btn btn--gold">Pozrieť menu</a>
+      <a href="tel:0915671603" class="btn btn--outline">📞 0915 671 603</a>
+    </div>
+    <div class="hero__badge">
+      <span>🕐 Ut–Ne</span>
+      <span class="hero__dot">·</span>
+      <span>11:00 – 20:00</span>
+      <span class="hero__dot">·</span>
+      <span>Drive-through &amp; rozvoz</span>
+    </div>
+  </div>
+  <div class="hero__arrow"><span></span></div>
+</section>
+
+<!-- ═══════════════ TRUST STRIP ═══════════════ -->
+<div class="trust">
+  <div class="container trust__row">
+    <div class="trust__item"><span>⭐</span><span><strong>5,0</strong> hodnotenie · 59 recenzií</span></div>
+    <div class="trust__item"><span>🥟</span><span>Domáca výroba každý deň</span></div>
+    <div class="trust__item"><span>🚗</span><span>Drive-through &amp; rozvoz</span></div>
+    <div class="trust__item"><span>💰</span><span>od <strong>8,10 €</strong></span></div>
+  </div>
+</div>
+
+<!-- ═══════════════ SEASONAL ═══════════════ -->
+<div class="seasonal">
+  <div class="container seasonal__inner">
+    <span>🍑</span>
+    <span>Sezónne špeciály sa menia — pýtajte sa na aktuálnu ponuku!</span>
+    <span>🍓</span>
+  </div>
+</div>
+
+<!-- ═══════════════ MENU ═══════════════ -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">Čo varíme</span>
+      <h2>Naše menu</h2>
+      <p>Každý pirog ručne tvarovaný, plnený domácou plnkou</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab active" data-filter="all">Všetky</button>
+      <button class="tab" data-filter="slane">Slané</button>
+      <button class="tab" data-filter="sladke">Sladké</button>
+      <button class="tab" data-filter="sucance">Šúcance</button>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="mcard reveal" data-cat="slane">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge slane">Slané</span></div>
+        <h3>Bryndzové</h3>
+        <p>So slaninou, kyslou smotanou a jemnou cibuľkou / pažítkou</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">10,20 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="slane">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge special">Špeciál</span></div>
+        <h3>Krevetové v šépiovom ceste</h3>
+        <p>Krevety na bielom víne s koreňovou zeleninou, koriandrom, cesnakom a chilli. Orientálna omáčka domácej výroby.</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">10,20 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="slane">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge slane">Slané</span></div>
+        <h3>Údeniaky</h3>
+        <p>So zelenkou a údeným obložkom, kyslá smotana</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">8,30 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="slane">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge slane">Slané</span></div>
+        <h3>S údeným mäsom</h3>
+        <p>So zelenkou a údeným mäsom, podávané na bede kapusty</p>
+        <div class="mcard__foot"><span>6 ks · 250 g</span><span class="price">8,10 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="slane">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge slane">Slané</span></div>
+        <h3>Špenátové s Ricottou</h3>
+        <p>Baby špenát a ricotta, podávané s jemným cesnakovým dipom</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">8,10 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="slane">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge slane">Slané</span></div>
+        <h3>Tatárčané slané</h3>
+        <p>Pohánkové cesto, tvaroh, zelenka, slanina a jemná cibuľka</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">8,20 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="sladke">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge sladke">Sladké</span></div>
+        <h3>Perky</h3>
+        <p>Divkový lekvár, posypka podľa výberu (šnak / orech / strúhanka), preliata maslom</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">8,10 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="sladke">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge sladke">Sladké</span></div>
+        <h3>Tatárčané sladké</h3>
+        <p>Pohánkové cesto, tvaroh, zelenka, preliatie horúcim ovocím</p>
+        <div class="mcard__foot"><span>7 ks · 250 g</span><span class="price">8,20 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="sucance">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge sladke">Sladké</span></div>
+        <h3>Zemiakové šúcance sladké</h3>
+        <p>Posypka podľa výberu, preliatie maslom s divkovým lekvárom alebo horúcim ovocím</p>
+        <div class="mcard__foot"><span>250 g</span><span class="price">8,10 €</span></div>
+      </div>
+
+      <div class="mcard reveal" data-cat="sucance">
+        <div class="mcard__top"><span class="mcard__heart">♥</span><span class="badge slane">Slané</span></div>
+        <h3>Zemiakové šúcance slané</h3>
+        <p>Kyslá kapusta a slanina</p>
+        <div class="mcard__foot"><span>250 g</span><span class="price">8,10 €</span></div>
+      </div>
+
+    </div>
+    <p class="menu-note">Alergény dostupné na požiadanie · Sezónne špeciály dopytujte priamo u nás</p>
+  </div>
+</section>
+
+<!-- ═══════════════ GALÉRIA ═══════════════ -->
+<section class="section gallery-section" id="galeria">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">Naša tvorba</span>
+      <h2>Ako to u nás vyzerá</h2>
+      <p>Čerstvé, poctivé, s láskou</p>
+    </div>
+    <div class="photo-grid">
+      <a class="photo-card reveal" href="https://www.instagram.com/p/DZ1z8fBIHmD/" target="_blank" rel="noopener">
+        <div class="photo-card__bg" style="--c1:#b8860b;--c2:#2a1800;"></div>
+        <div class="photo-card__body">
+          <span class="photo-card__emoji">🍑</span>
+          <h3>Marhuľové pirohy</h3>
+          <p>Sezónna špeciálka z čerstvých marhúľ</p>
+        </div>
+        <span class="photo-card__link">Otvoriť na Instagrame →</span>
+      </a>
+      <a class="photo-card reveal" href="https://www.instagram.com/p/DZhVTFlCADV/" target="_blank" rel="noopener">
+        <div class="photo-card__bg" style="--c1:#6b4c1e;--c2:#150e03;"></div>
+        <div class="photo-card__body">
+          <span class="photo-card__emoji">🥟</span>
+          <h3>Naše pirohy</h3>
+          <p>Výber z celého menu — klasika aj špeciály</p>
+        </div>
+        <span class="photo-card__link">Otvoriť na Instagrame →</span>
+      </a>
+      <a class="photo-card reveal" href="https://www.instagram.com/p/DZPPgrzoiLg/" target="_blank" rel="noopener">
+        <div class="photo-card__bg" style="--c1:#8b1a2a;--c2:#150408;"></div>
+        <div class="photo-card__body">
+          <span class="photo-card__emoji">🍓</span>
+          <h3>Jahodová novinka</h3>
+          <p>Sezónna sladká novinka — kým sú jahody!</p>
+        </div>
+        <span class="photo-card__link">Otvoriť na Instagrame →</span>
+      </a>
+    </div>
+    <div class="gallery-cta">
+      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener" class="btn btn--outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Sledujte nás @pirohovo · 1 734 sledovateľov
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ VIDEÁ ═══════════════ -->
+<section class="section video-section" id="videá">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">V akcii</span>
+      <h2>Naše Reels</h2>
+      <p>Zákulisie, novinky a poctivá práca</p>
+    </div>
+    <div class="reels-grid">
+      <a class="reel-card reveal" href="https://www.instagram.com/reel/DW_7S4OiQH9/" target="_blank" rel="noopener">
+        <div class="reel-card__bg" style="--c1:#7a5a20;--c2:#0e0a02;"></div>
+        <div class="reel-card__play">▶</div>
+        <div class="reel-card__info">
+          <span class="reel-views">👁 3 629 zobrazení</span>
+          <h3>Poctivé jedlo, poctivá príprava</h3>
+        </div>
+      </a>
+      <a class="reel-card reveal" href="https://www.instagram.com/reel/DXfG0g8DKbO/" target="_blank" rel="noopener">
+        <div class="reel-card__bg" style="--c1:#1e4a2a;--c2:#050e07;"></div>
+        <div class="reel-card__play">▶</div>
+        <div class="reel-card__info">
+          <span class="reel-views">👁 1 802 zobrazení</span>
+          <h3>Koliba v Bratislave na Bajkalskej?</h3>
+        </div>
+      </a>
+      <a class="reel-card reveal" href="https://www.instagram.com/reel/DYy0P_EIur9/" target="_blank" rel="noopener">
+        <div class="reel-card__bg" style="--c1:#5a2e08;--c2:#0e0602;"></div>
+        <div class="reel-card__play">▶</div>
+        <div class="reel-card__info">
+          <span class="reel-views">👁 855 zobrazení</span>
+          <h3>Cesto z lásky — každý pirog ručne</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ O NÁS ═══════════════ -->
+<section class="section o-nas" id="o-nas">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">Náš príbeh</span>
+      <h2>Poctivé pirohy<br><em>s láskou</em></h2>
+    </div>
+    <div class="o-nas__grid">
+      <div class="o-nas__text reveal">
+        <p>Každý pirog u nás vzniká ručne — z pravého zemiakového cesta, plneného domácimi plnkami. Nič zmrazené, nič z vrecka. Iba suroviny, čas a láska k remeslu.</p>
+        <p>Nájdete nás na Prešovskej 38B v Bratislave. Príďte na mieste, objednajte cez drive-through, alebo si dajte doniesť domov.</p>
+        <div class="rating-box">
+          <span class="stars">★★★★★</span>
+          <div><strong>5,0</strong> — 59 recenzií na Google</div>
+        </div>
+      </div>
+      <div class="pillars reveal">
+        <div class="pillar">
+          <span>🌾</span>
+          <div><h3>Domáce cesto</h3><p>Zemiakové cesto pripravujeme každý deň čerstvé, bez konzervantov</p></div>
+        </div>
+        <div class="pillar">
+          <span>❤️</span>
+          <div><h3>Varíme s láskou</h3><p>Každá plnka pochádza z vlastnej receptúry s dušou</p></div>
+        </div>
+        <div class="pillar">
+          <span>✋</span>
+          <div><h3>Ručná výroba</h3><p>Žiadne stroje — každý pirog sformovaný ručne, tak ako má byť</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ KDE NÁS ═══════════════ -->
+<section class="section kde-nas" id="kde-nas">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">Navštívte nás</span>
+      <h2>Kde nás nájdete</h2>
+    </div>
+    <div class="kde-nas__grid">
+      <div class="kde-nas__info reveal">
+        <div class="iblock">
+          <h3>📍 Adresa</h3>
+          <p>Prešovská 349/38B<br>821 02 Bratislava</p>
+          <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" class="ilink" target="_blank" rel="noopener">Zobraziť na mape →</a>
+        </div>
+        <div class="iblock">
+          <h3>🕐 Otváracie hodiny</h3>
+          <table class="hours">
+            <tr><td>Pondelok</td><td class="closed">Zatvorené</td></tr>
+            <tr><td>Utorok – Piatok</td><td>11:00 – 20:00</td></tr>
+            <tr><td>Sobota – Nedeľa</td><td>11:00 – 20:00</td></tr>
+          </table>
+        </div>
+        <div class="iblock">
+          <h3>📞 Kontakt</h3>
+          <a href="tel:0915671603" class="ilink ilink--big">0915 671 603</a>
+        </div>
+        <div class="iblock">
+          <h3>🚗 Ponúkame</h3>
+          <div class="stags">
+            <span>Jedlo na mieste</span>
+            <span>Drive-through</span>
+            <span>Rozvoz</span>
+          </div>
+        </div>
+      </div>
+      <div class="kde-nas__map reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2661.44!2d17.1401873!3d48.1594652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8f8550060199%3A0xf0d0e81bd54229d1!2sPirohovo!5e0!3m2!1ssk!2ssk!4v1703000000000!5m2!1ssk!2ssk"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Pirohovo na mape">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="footer__logo">PIROHO<span class="red">♥</span>O</span>
+      <span class="footer__tag">Varíme s láskou</span>
+    </div>
+    <div class="footer__socials">
+      <a href="https://www.facebook.com/pirohovo" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+    </div>
+    <p class="footer__copy">© 2025 Pirohovo · Prešovská 38B, Bratislava · pirohovo.eu</p>
+  </div>
+</footer>
+
+<script src="app.js?v=1"></script>
 </body>
 </html>
