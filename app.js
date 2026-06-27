@@ -1,4 +1,4 @@
-/* Pirohovo app.js v33 */
+/* Pirohovo app.js v34 */
 
 // ── Nav pirog roam ──
 (function () {
@@ -34,6 +34,7 @@ if (burger && navLinks) {
     const open = navLinks.classList.toggle('open');
     burger.classList.toggle('is-open', open);
     burger.setAttribute('aria-expanded', String(open));
+    if (nav) nav.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
   navLinks.querySelectorAll('a').forEach(a => {
