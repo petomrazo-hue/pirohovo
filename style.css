@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PIROHOVO — Premium Restaurant Design v31
+   PIROHOVO — Premium Restaurant Design v32
    ═══════════════════════════════════════════ */
 
 /* ── 1. TOKENS ─────────────────────────────── */
@@ -76,6 +76,26 @@ body::after {
   margin: 0 0.03em;
   flex-shrink: 0;
 }
+
+/* ── FLOATING PIROGY (hero decoration) ──────── */
+.hero__floaty {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none; overflow: hidden;
+}
+.hero__floaty span {
+  position: absolute; bottom: -80px; left: var(--x);
+  font-size: calc(var(--s, 1) * 2rem);
+  opacity: 0;
+  animation: pirogRise var(--d, 10s) var(--del, 0s) ease-in-out infinite;
+  filter: drop-shadow(0 2px 8px rgba(212,44,31,.25));
+}
+@keyframes pirogRise {
+  0%   { opacity: 0;    transform: translateY(0)       rotate(0deg); }
+  12%  { opacity: .22; }
+  80%  { opacity: .14; }
+  100% { opacity: 0;    transform: translateY(-110vh)   rotate(var(--r, 25deg)); }
+}
+@media (prefers-reduced-motion: reduce) { .hero__floaty span { animation: none; } }
 
 /* ── 6. TYPOGRAPHY ──────────────────────────── */
 .label {
