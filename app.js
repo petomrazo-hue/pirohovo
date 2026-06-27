@@ -1,102 +1,83 @@
-// ── Nav scroll + Hero parallax ──
+/* Pirohovo app.js v31 */
+
+// ── Nav scroll ──
 const nav = document.getElementById('nav');
-const heroBg = document.getElementById('heroBgPhoto');
+const heroBg = document.getElementById('heroBg');
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
-  nav.classList.toggle('scrolled', y > 60);
-  if (heroBg) heroBg.style.transform = `scale(1.06) translateY(${y * 0.25}px)`;
+  if (nav) nav.classList.toggle('scrolled', y > 60);
+  if (heroBg) heroBg.style.transform = `scale(1.06) translateY(${y * 0.22}px)`;
 }, { passive: true });
 
 // ── Mobile burger ──
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  burger.classList.toggle('is-open', open);
-  burger.setAttribute('aria-expanded', open);
-});
-navLinks.querySelectorAll('a').forEach(a =>
-  a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    burger.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
-  })
-);
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+}
 
 // ── Reveal on scroll ──
 const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      revealObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.06 });
-reveals.forEach(el => revealObs.observe(el));
-
-// ── Menu filter (tabs + visual cat-cards) ──
-const tabs = document.querySelectorAll('.tab');
-const catCards = document.querySelectorAll('.cat-card');
-const menuCats = document.querySelectorAll('.menu-cat');
-const mItems = document.querySelectorAll('.mitem');
-
-function applyFilter(f) {
-  if (f === 'all') {
-    menuCats.forEach(c => { c.classList.remove('hidden'); c.classList.add('visible'); });
-    mItems.forEach(i => { i.style.display = ''; i.classList.add('visible'); });
-  } else {
-    menuCats.forEach(cat => {
-      const groupItems = cat.querySelectorAll('.mitem');
-      const match = [...groupItems].some(i => i.dataset.cat === f);
-      if (match) {
-        cat.classList.remove('hidden');
-        cat.classList.add('visible');
-      } else {
-        cat.classList.add('hidden');
+if (reveals.length) {
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        revealObs.unobserve(entry.target);
       }
-      groupItems.forEach(i => { i.style.display = i.dataset.cat === f ? '' : 'none'; });
     });
-  }
+  }, { threshold: 0.06 });
+  reveals.forEach(el => revealObs.observe(el));
 }
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-    catCards.forEach(c => c.classList.remove('active'));
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
-    const f = tab.dataset.filter;
-    catCards.forEach(c => { if (c.dataset.filter === f) c.classList.add('active'); });
-    applyFilter(f);
+// ── Menu category filter (menu.html) ──
+const catBtns = document.querySelectorAll('.menu-cat-btn');
+const catSections = document.querySelectorAll('.menu-cat-section');
+if (catBtns.length && catSections.length) {
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const f = btn.dataset.filter;
+      catSections.forEach(sec => {
+        if (f === 'all' || sec.dataset.group === f) {
+          sec.style.display = '';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    });
   });
-});
+}
 
-catCards.forEach(card => {
-  card.addEventListener('click', () => {
-    catCards.forEach(c => c.classList.remove('active'));
-    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-    card.classList.add('active');
-    const f = card.dataset.filter;
-    tabs.forEach(t => { if (t.dataset.filter === f) { t.classList.add('active'); t.setAttribute('aria-selected', 'true'); } });
-    applyFilter(f);
-  });
-});
-
-// ── Cursor pirohy — brand logo štýl (biely outline dumpling) ──
+// ── Cursor pirog effect (brand logo-style outline dumpling) ──
 (function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if ('ontouchstart' in window && navigator.maxTouchPoints > 1) return;
+
   const PIROG_SVG = `<svg viewBox="0 0 64 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Telo pirohu -->
     <path d="M4 38 C4 38 2 36 4 30 C8 14 18 4 32 4 C46 4 56 14 60 30 C62 36 60 38 60 38 Z"
-          fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.95)" stroke-width="2.2" stroke-linejoin="round"/>
-    <!-- Vrúbkovaný okraj (crimp) — logo štýl -->
+          fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.92)" stroke-width="2.2" stroke-linejoin="round"/>
     <path d="M6 33 C8 27 7 24 10 22 C13 20 15 24 18 22 C21 20 22 17 25 15 C28 13 29 17 32 16 C35 15 36 19 39 17 C42 15 43 19 46 18 C49 17 50 21 53 20 C56 19 57 24 58 28"
-          fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- Lesk -->
-    <path d="M16 18 Q24 9 32 8 Q40 7 48 12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
+          fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 18 Q24 9 32 8 Q40 7 48 12" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2" stroke-linecap="round"/>
   </svg>`;
-  var last = 0;
-  var count = 0;
+
+  let last = 0, count = 0;
 
   function emitPirog(x, y, burst) {
     const el = document.createElement('span');
@@ -104,53 +85,45 @@ catCards.forEach(card => {
     el.innerHTML = PIROG_SVG;
     const spread = burst ? 80 : 50;
     const dx = (Math.random() - 0.5) * spread;
-    const dy = -(burst ? 60 : 35) - Math.random() * 45;
+    const dy = -(burst ? 60 : 32) - Math.random() * 40;
     const rot = (Math.random() < 0.5 ? -1 : 1) * (20 + Math.random() * 50) + 'deg';
-    const size = burst ? (18 + Math.random() * 10) : (16 + Math.random() * 8);
+    const size = burst ? (18 + Math.random() * 10) : (15 + Math.random() * 7);
     el.style.cssText = `left:${x}px;top:${y}px;font-size:${size}px`;
     el.style.setProperty('--dx', dx + 'px');
     el.style.setProperty('--dy', dy + 'px');
     el.style.setProperty('--rot', rot);
     document.body.appendChild(el);
-    el.addEventListener('animationend', () => el.remove());
+    el.addEventListener('animationend', () => el.remove(), { once: true });
   }
 
-  window.addEventListener('mousemove', function (e) {
+  window.addEventListener('mousemove', (e) => {
     const now = Date.now();
-    if (now - last < 85) return;
-    last = now;
-    count++;
+    if (now - last < 90) return;
+    last = now; count++;
     emitPirog(e.clientX, e.clientY, false);
-    if (count % 5 === 0) emitPirog(e.clientX + (Math.random()-0.5)*20, e.clientY + (Math.random()-0.5)*20, false);
+    if (count % 6 === 0) emitPirog(e.clientX + (Math.random()-0.5)*16, e.clientY + (Math.random()-0.5)*16, false);
   }, { passive: true });
 
-  window.addEventListener('click', function (e) {
+  window.addEventListener('click', (e) => {
     for (let i = 0; i < 5; i++) {
-      setTimeout(() => emitPirog(
-        e.clientX + (Math.random()*40-20),
-        e.clientY + (Math.random()*20-10),
-        true
-      ), i * 55);
+      setTimeout(() => emitPirog(e.clientX + (Math.random()*36-18), e.clientY + (Math.random()*18-9), true), i * 55);
     }
   });
 
-  window.addEventListener('pointerdown', function (e) {
+  window.addEventListener('pointerdown', (e) => {
     if (e.pointerType === 'touch') {
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => emitPirog(
-          e.clientX + (Math.random()*40-20),
-          e.clientY + (Math.random()*20-10),
-          true
-        ), i * 60);
+      for (let i = 0; i < 4; i++) {
+        setTimeout(() => emitPirog(e.clientX + (Math.random()*36-18), e.clientY + (Math.random()*18-9), true), i * 60);
       }
     }
   }, { passive: true });
 })();
 
-// ── Floating flour particles ──
+// ── Flour particles ──
 (function () {
   const container = document.getElementById('particles');
   if (!container) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const style = document.createElement('style');
   style.textContent = `
@@ -168,35 +141,22 @@ catCards.forEach(card => {
   `;
   document.head.appendChild(style);
 
-  for (let i = 0; i < 28; i++) {
+  for (let i = 0; i < 24; i++) {
     const dot = document.createElement('span');
     dot.className = 'flour-dot';
-    const size = 1.2 + Math.random() * 3.5;
+    const size = 1 + Math.random() * 3.2;
     const x = Math.random() * 100;
     const dur = 12 + Math.random() * 18;
     const delay = -(Math.random() * dur);
-    const isGold = Math.random() > 0.55;
-    const op = (.08 + Math.random() * .22).toFixed(2);
-    const drift = ((Math.random() - 0.5) * 120).toFixed(0) + 'px';
+    const isGold = Math.random() > 0.5;
+    const op = (.07 + Math.random() * .18).toFixed(2);
+    const drift = ((Math.random() - 0.5) * 110).toFixed(0) + 'px';
     const spin = ((Math.random() - 0.5) * 360).toFixed(0) + 'deg';
     dot.style.cssText = `left:${x}%;bottom:${-size}px;width:${size}px;height:${size}px;
-      background:${isGold ? `rgba(212,168,67,${op})` : `rgba(255,252,235,${op})`};
+      background:${isGold ? `rgba(212,168,67,${op})` : `rgba(255,252,240,${op})`};
       --dur:${dur}s;--delay:${delay}s;--op:${op};--drift:${drift};--spin:${spin};`;
     container.appendChild(dot);
   }
-})();
-
-// ── Hero logo ring parallax ──
-(function () {
-  const ring = document.getElementById('heroRing');
-  if (!ring) return;
-  window.addEventListener('mousemove', function (e) {
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / cx * 8;
-    const dy = (e.clientY - cy) / cy * 8;
-    ring.style.transform = `translate(${dx}px, ${dy}px)`;
-  }, { passive: true });
 })();
 
 // ── Back to top ──
@@ -214,26 +174,24 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ── Open/closed badge ──
 (function () {
-  const badge = document.getElementById('openBadge');
-  const heroBadge = document.getElementById('heroOpenBadge');
-  if (!badge && !heroBadge) return;
+  const badges = [document.getElementById('openBadge'), document.getElementById('heroOpenBadge')].filter(Boolean);
+  if (!badges.length) return;
   const now = new Date();
-  const day = now.getDay();
+  const day = now.getDay();  // 0=Sun, 1=Mon
   const time = now.getHours() * 60 + now.getMinutes();
   const isMonday = day === 1;
   const inHours = time >= 11 * 60 && time < 20 * 60;
   let cls, txt;
   if (!isMonday && inHours) {
-    cls = 'open-badge is-open'; txt = 'Dnes otvorené · do 20:00';
+    cls = 'open-badge is-open'; txt = 'Teraz otvorené · do 20:00';
   } else if (isMonday) {
-    cls = 'open-badge is-closed'; txt = 'Dnes zatvorené';
+    cls = 'open-badge is-closed'; txt = 'Dnes zatvorené (Pondelok)';
   } else if (time >= 20 * 60) {
-    cls = 'open-badge is-closed'; txt = 'Dnes zatvorené · otvárame zajtra 11:00';
+    cls = 'open-badge is-closed'; txt = 'Zatvorené · otvárame zajtra 11:00';
   } else {
     cls = 'open-badge is-open'; txt = 'Dnes otvárame o 11:00';
   }
-  if (badge) { badge.className = cls; badge.textContent = txt; }
-  if (heroBadge) { heroBadge.className = cls; heroBadge.textContent = txt; }
+  badges.forEach(b => { b.className = cls; b.textContent = txt; });
 })();
 
 // ── Seasonal bar dismiss ──
@@ -241,61 +199,49 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   const bar = document.getElementById('seasonalBar');
   const btn = document.getElementById('seasonalClose');
   if (!bar || !btn) return;
-  if (localStorage.getItem('seasonalDismissed') === '1') {
-    bar.style.display = 'none'; return;
-  }
+  if (sessionStorage.getItem('seasonalDismissed') === '1') { bar.style.display = 'none'; return; }
   btn.addEventListener('click', () => {
     bar.style.display = 'none';
-    localStorage.setItem('seasonalDismissed', '1');
+    sessionStorage.setItem('seasonalDismissed', '1');
   });
 })();
 
 // ── Cookie banner + Google Consent Mode v2 ──
 (function () {
-  const banner = document.getElementById('cookieBanner');
+  const banner  = document.getElementById('cookieBanner');
   const accept  = document.getElementById('cookieAccept');
   const decline = document.getElementById('cookieDecline');
   if (!banner) return;
 
-  function gtag() { if (window.dataLayer) window.dataLayer.push(arguments); }
+  function gtag(...args) { if (window.dataLayer) window.dataLayer.push(args); }
 
   function grantAll() {
-    if (typeof gtag === 'function') {
-      gtag('consent','update',{
-        'ad_storage':         'granted',
-        'ad_user_data':       'granted',
-        'ad_personalization': 'granted',
-        'analytics_storage':  'granted'
-      });
-    }
+    gtag('consent', 'update', {
+      'ad_storage':         'granted',
+      'ad_user_data':       'granted',
+      'ad_personalization': 'granted',
+      'analytics_storage':  'granted'
+    });
   }
 
-  function grantEssential() {
-    // Keep defaults (denied) — nothing extra to grant
-  }
-
-  // Apply saved consent on page load
   const saved = localStorage.getItem('pirohovoCookies');
   if (saved === 'all') { grantAll(); }
-  else if (!saved) {
-    setTimeout(() => { banner.style.display = 'block'; }, 1500);
-  }
+  else if (!saved) { setTimeout(() => { banner.style.display = 'block'; }, 1600); }
 
   function closeBanner() {
-    banner.style.transition = 'transform .35s ease, opacity .35s';
+    banner.style.transition = 'transform .32s ease, opacity .32s';
     banner.style.opacity = '0';
     banner.style.transform = 'translateY(100%)';
-    setTimeout(() => { banner.style.display = 'none'; }, 380);
+    setTimeout(() => { banner.style.display = 'none'; }, 340);
   }
 
-  accept.addEventListener('click', () => {
+  if (accept) accept.addEventListener('click', () => {
     localStorage.setItem('pirohovoCookies', 'all');
     grantAll();
     closeBanner();
   });
-  decline.addEventListener('click', () => {
+  if (decline) decline.addEventListener('click', () => {
     localStorage.setItem('pirohovoCookies', 'essential');
-    grantEssential();
     closeBanner();
   });
 })();
