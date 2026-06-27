@@ -392,10 +392,11 @@ body::after {
   font-size: 1.55em;
   display: inline-block;
   vertical-align: middle;
-  line-height: 0.62;
+  line-height: 0;
   margin: 0 0.04em;
   text-shadow: 0 4px 24px rgba(192,57,43,.5);
 }
+.hero__title { white-space: nowrap; }
 
 .hero__brand-claim {
   font-family: var(--display);
