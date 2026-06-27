@@ -32,11 +32,11 @@
   <link rel="preconnect" href="https://www.instagram.com">
   <link rel="preconnect" href="https://maps.googleapis.com">
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="images/bg1.jpg">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/ig-stanek.png">
 
-  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="style.css?v=22">
   <link rel="manifest" href="site.webmanifest">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 
@@ -135,12 +135,6 @@
 
 <a href="#main-content" class="skip-link">Preskočiť na hlavný obsah</a>
 
-<!-- ═══════════════ CINEMATIC BACKGROUND ═══════════════ -->
-<div class="bg-cinema" aria-hidden="true">
-  <div class="bg-slide s1"></div>
-</div>
-<div class="bg-overlay" aria-hidden="true"></div>
-
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav class="nav" id="nav">
   <div class="nav__inner container">
@@ -169,6 +163,9 @@
 <!-- ═══════════════ HERO ═══════════════ -->
 <main id="main-content">
 <section class="hero" id="home">
+  <!-- Stánok Pirohovo ako hero pozadie -->
+  <div class="hero__bg-photo" id="heroBgPhoto" aria-hidden="true"></div>
+  <div class="hero__bg-overlay" aria-hidden="true"></div>
   <div class="hero__glow"></div>
   <!-- Dekoratívne SVG pirohy plávajúce v hero sekcii -->
   <div class="hero__decos" aria-hidden="true">
@@ -291,7 +288,7 @@
         </div>
         <ul class="menu-items">
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/menu_bryndzove.jpg');background-position:center 40%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-bryndzove.png');background-position:center 55%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Bryndzové <span class="mbadge mbadge--star">★ Bestseller</span></span>
@@ -303,7 +300,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--slane" aria-hidden="true"><span class="mitem__img-icon">🦐</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-krevetove.png');background-position:center 40%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Krevetové v sépiovom ceste <span class="mbadge mbadge--new">NOVINKA</span></span>
@@ -315,7 +312,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--slane" aria-hidden="true"><span class="mitem__img-icon">🥟</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-smoked.png');background-position:center 60%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Údeniaky</span>
@@ -326,7 +323,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--slane" aria-hidden="true"><span class="mitem__img-icon">🥟</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-smoked.png');background-position:center 35%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">S údeným mäsom</span>
@@ -337,7 +334,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--slane" aria-hidden="true"><span class="mitem__img-icon">🌿</span></div>
+            <div class="mitem__img mitem__img--heart" aria-hidden="true"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Špenátové s Ricottou</span>
@@ -348,7 +345,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--slane" aria-hidden="true"><span class="mitem__img-icon">🌾</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-tatarcane.png');background-position:center 30%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Tatárčané slané</span>
@@ -369,7 +366,7 @@
         </div>
         <ul class="menu-items">
           <li class="mitem" data-cat="sladke">
-            <div class="mitem__img mitem__img--sladke" aria-hidden="true"><span class="mitem__img-icon">🫐</span></div>
+            <div class="mitem__img mitem__img--heart" aria-hidden="true"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Perky</span>
@@ -380,7 +377,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="sladke">
-            <div class="mitem__img mitem__img--sladke" aria-hidden="true"><span class="mitem__img-icon">🌾</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-tatarcane.png');background-position:center 65%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Tatárčané sladké</span>
@@ -391,7 +388,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="sladke">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/menu_marhulovce.jpg');background-position:center 75%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-easter.png');background-position:center 75%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Marhuľové <span class="mbadge mbadge--season">Sezónne</span></span>
@@ -413,7 +410,7 @@
         </div>
         <ul class="menu-items">
           <li class="mitem" data-cat="sucance">
-            <div class="mitem__img mitem__img--sucance" aria-hidden="true"><span class="mitem__img-icon">🫙</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-sulance.png');background-position:center 60%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Zemiakové šúľance sladké</span>
@@ -424,7 +421,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="sucance">
-            <div class="mitem__img mitem__img--sucance" aria-hidden="true"><span class="mitem__img-icon">🥬</span></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-sulance.png');background-position:center 30%"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Šúľance s kapustou a slaninkou</span>
@@ -572,26 +569,66 @@
       <h2>Ako to u nás vyzerá</h2>
       <p>Čerstvé, poctivé, s láskou</p>
     </div>
-    <div class="photo-grid photo-grid--2">
-      <a class="photo-card photo-card--large reveal" href="https://www.instagram.com/p/DZ1z8fBIHmD/" target="_blank" rel="noopener">
+    <div class="photo-grid photo-grid--featured">
+      <a class="photo-card photo-card--large reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
         <figure class="photo-card__figure">
-          <img src="images/bg1.jpg" alt="Marhuľové pirohy – sezónna špeciálka z čerstvých marhúľ" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 75%">
+          <img src="images/ig-krevetove.png" alt="Krevetové v sépiovom ceste — dramatická sépiová plnka s krevetu" loading="lazy" width="900" height="700" class="photo-card__img" style="object-position: center 40%">
         </figure>
         <div class="photo-card__body">
-          <h3>Marhuľové pirohy</h3>
-          <p>Sezónna špeciálka z čerstvých marhúľ — jemné cesto, voňavá plnka</p>
+          <h3>Krevetové v sépiovom ceste</h3>
+          <p>Čierne sépiové cesto, krevety z bieleho vína — najodvážnejší pirog v menu</p>
         </div>
-        <span class="photo-card__link">Otvoriť na Instagrame →</span>
+        <span class="photo-card__link">@pirohovo →</span>
       </a>
-      <a class="photo-card photo-card--large reveal" href="https://www.instagram.com/p/DZPPgrzoiLg/" target="_blank" rel="noopener">
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
         <figure class="photo-card__figure">
-          <img src="images/bg2.jpg" alt="Jahodová novinka – sezónna sladká špeciálka z čerstvých jahôd" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 60%">
+          <img src="images/ig-easter.png" alt="Farebné pirohy — jarná kolekcia Pirohovo" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 50%">
         </figure>
         <div class="photo-card__body">
-          <h3>Jahodová novinka</h3>
-          <p>Sezónna sladká klasika — kým sú jahody, varíme s jahodami</p>
+          <h3>Jarná kolekcia</h3>
+          <p>Pirohy v každej farbe — sépiové, špenátové, ryžové</p>
         </div>
-        <span class="photo-card__link">Otvoriť na Instagrame →</span>
+        <span class="photo-card__link">@pirohovo →</span>
+      </a>
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+        <figure class="photo-card__figure">
+          <img src="images/ig-bryndzove.png" alt="Bryndzové pirohy — klasika Pirohovo" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 55%">
+        </figure>
+        <div class="photo-card__body">
+          <h3>Bryndzové</h3>
+          <p>Bestseller — každý týždeň rovnaká cesta, vždy rovnaká spokojnosť</p>
+        </div>
+        <span class="photo-card__link">@pirohovo →</span>
+      </a>
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+        <figure class="photo-card__figure">
+          <img src="images/ig-sulance.png" alt="Šúľance s makovým posypom a višňovým kompótom" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 50%">
+        </figure>
+        <div class="photo-card__body">
+          <h3>Šúľance</h3>
+          <p>Makový posyp, višňový kompót — babičkina receptúra</p>
+        </div>
+        <span class="photo-card__link">@pirohovo →</span>
+      </a>
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+        <figure class="photo-card__figure">
+          <img src="images/ig-lentil.png" alt="Šošovicové pirohy — vegánska špeciálka Pirohovo" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 45%">
+        </figure>
+        <div class="photo-card__body">
+          <h3>Šošovicová špeciálka</h3>
+          <p>Plnka z červenej šošovice, mrkvy a koriandra</p>
+        </div>
+        <span class="photo-card__link">@pirohovo →</span>
+      </a>
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+        <figure class="photo-card__figure">
+          <img src="images/ig-black-cup.png" alt="Čierne pirohy v papierovom poháriku — Pirohovo stánok" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 40%">
+        </figure>
+        <div class="photo-card__body">
+          <h3>Čierne v poháriku</h3>
+          <p>Drive-through klasika — čierne sépiové cesto, rýchlo a horúco</p>
+        </div>
+        <span class="photo-card__link">@pirohovo →</span>
       </a>
     </div>
     <div class="gallery-cta">
@@ -679,6 +716,9 @@
     </div>
     <div class="o-nas__grid">
       <div class="o-nas__text reveal">
+        <div class="o-nas__stanak-photo">
+          <img src="images/ig-stanek.png" alt="Pirohovo stánok na Prešovskej ulici v Bratislave" loading="lazy" width="800" height="500">
+        </div>
         <p>Pirohovo vzniklo z jednoduchého nápadu — v Bratislave chýbalo miesto, kde dostaneš skutočné pirohy tak, aké robí stará mama na dedinách. Cesto miešame každé ráno, plnky varíme z čerstvých surovín bez kompromisov.</p>
         <p>Nájdeš nás na Prešovskej. Príď na mieste, vyzdvihni cez drive-through okienko, alebo ti prinesieme domov. Utorok až nedeľa od 11:00.</p>
         <div class="rating-box">

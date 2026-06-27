@@ -1,7 +1,10 @@
-// ── Nav scroll ──
+// ── Nav scroll + Hero parallax ──
 const nav = document.getElementById('nav');
+const heroBg = document.getElementById('heroBgPhoto');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 60);
+  if (heroBg) heroBg.style.transform = `scale(1.06) translateY(${y * 0.25}px)`;
 }, { passive: true });
 
 // ── Mobile burger ──
