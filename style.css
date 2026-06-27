@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PIROHOVO — Dark Brand Redesign v22
+   PIROHOVO — Dark Brand Redesign v23
    ═══════════════════════════════════════════ */
 
 :root {
@@ -19,9 +19,11 @@
   --gold-d:    #9a7018;
   --r:         14px;
   --max:       1200px;
-  --serif:     'Playfair Display', Georgia, serif;
-  --display:   'Poppins', sans-serif;
-  --sans:      'Inter', system-ui, sans-serif;
+  --serif:      'Playfair Display', Georgia, serif;
+  --font-brand: 'Amatic SC', cursive;
+  --font-body:  'Inter', system-ui, -apple-system, sans-serif;
+  --display:    var(--font-brand);
+  --sans:       var(--font-body);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -129,9 +131,9 @@ body::after {
   display: flex; flex-direction: column; gap: 1px;
 }
 .nav__logo-text {
-  font-family: var(--display);
-  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
-  font-weight: 900;
+  font-family: var(--font-brand);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
   letter-spacing: .06em;
   color: var(--text);
   white-space: nowrap;
@@ -159,8 +161,8 @@ body::after {
 }
 .nav__links a {
   color: rgba(245,240,232,.7); text-decoration: none;
-  font-family: var(--display);
-  font-size: 1rem; font-weight: 900; letter-spacing: .08em;
+  font-family: var(--font-body);
+  font-size: .85rem; font-weight: 600; letter-spacing: .08em;
   text-transform: uppercase;
   transition: color .2s; position: relative;
 }
@@ -287,9 +289,9 @@ body::after {
 }
 
 .hero__title {
-  font-family: var(--display);
-  font-size: clamp(4.5rem, 14vw, 11rem);
-  font-weight: 900; line-height: .9;
+  font-family: var(--font-brand);
+  font-size: clamp(5.5rem, 17vw, 13rem);
+  font-weight: 700; line-height: .9;
   letter-spacing: .06em; text-transform: uppercase;
   color: #fff; margin-bottom: 10px;
   text-shadow: 0 4px 60px rgba(0,0,0,.7);
@@ -306,9 +308,9 @@ body::after {
 .hero__title { white-space: nowrap; }
 
 .hero__brand-claim {
-  font-family: var(--display);
-  font-size: clamp(.9rem, 2.5vw, 1.6rem);
-  font-weight: 900;
+  font-family: var(--font-body);
+  font-size: clamp(.9rem, 2.5vw, 1.3rem);
+  font-weight: 600;
   letter-spacing: .45em;
   color: rgba(245,240,232,.45);
   text-transform: uppercase;
@@ -422,9 +424,9 @@ body::after {
 
 .sec-head { text-align: center; margin-bottom: 60px; }
 .sec-head h2 {
-  font-family: var(--display);
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 900; line-height: 1.0;
+  font-family: var(--font-brand);
+  font-size: clamp(3rem, 7.5vw, 5.5rem);
+  font-weight: 700; line-height: 1.0;
   letter-spacing: .06em; text-transform: uppercase;
   color: var(--text);
   margin-bottom: 14px;
@@ -437,11 +439,11 @@ body::after {
 }
 .sec-head p { font-size: .97rem; color: var(--muted); max-width: 440px; margin: 0 auto; }
 
-/* Global h3 → Poppins Black */
+/* Global h3 → Amatic SC brand font */
 h3 {
-  font-family: var(--display) !important;
-  font-weight: 900 !important;
-  letter-spacing: .06em;
+  font-family: var(--font-brand) !important;
+  font-weight: 700 !important;
+  letter-spacing: .05em;
   text-transform: uppercase;
 }
 
@@ -471,10 +473,10 @@ h3 {
 
 .menu-cat__head { margin-bottom: 28px; }
 .menu-cat__title {
-  font-family: var(--display) !important;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 900 !important; color: var(--text); margin-bottom: 14px;
-  letter-spacing: .08em; text-transform: uppercase;
+  font-family: var(--font-brand) !important;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700 !important; color: var(--text); margin-bottom: 14px;
+  letter-spacing: .05em; text-transform: uppercase;
 }
 .menu-cat__orn {
   display: flex; align-items: center; gap: 10px;
@@ -536,14 +538,14 @@ h3 {
   align-items: flex-start; gap: 10px;
 }
 .mitem__name {
-  font-family: var(--display) !important;
-  font-size: 1.1rem !important; font-weight: 900 !important;
-  color: var(--text) !important; line-height: 1.25;
+  font-family: var(--font-brand) !important;
+  font-size: 1.5rem !important; font-weight: 700 !important;
+  color: var(--text) !important; line-height: 1.2;
   display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap;
   letter-spacing: .04em; text-transform: uppercase;
 }
 .mitem__price {
-  font-family: var(--display); font-size: 1.4rem; font-weight: 900;
+  font-family: var(--font-body); font-size: 1rem; font-weight: 700;
   color: var(--gold); flex-shrink: 0; line-height: 1;
 }
 .mitem__desc {
@@ -683,10 +685,10 @@ h3 {
 
 .photo-card__body { position: relative; z-index: 1; }
 .photo-card h3 {
-  font-family: var(--display) !important;
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  font-weight: 900 !important;
-  letter-spacing: .06em !important;
+  font-family: var(--font-brand) !important;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700 !important;
+  letter-spacing: .05em !important;
   text-transform: uppercase;
   margin-bottom: 6px; color: #fff;
   text-shadow: 0 2px 12px rgba(0,0,0,.5);
@@ -835,8 +837,8 @@ h3 {
   padding: 64px 0; text-align: center;
 }
 .email-capture h2 {
-  font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
-  color: var(--text); letter-spacing: .06em; margin-bottom: 10px; line-height: 1.2;
+  font-family: var(--font-brand); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+  color: var(--text); letter-spacing: .05em; margin-bottom: 10px; line-height: 1.1;
   text-transform: uppercase;
 }
 .email-capture > .container > p {
@@ -867,12 +869,12 @@ h3 {
 }
 .footer__brand { display: flex; flex-direction: column; gap: 4px; }
 .footer__logo {
-  font-family: var(--display); font-size: 1.6rem;
-  font-weight: 900; letter-spacing: .15em; color: var(--text);
+  font-family: var(--font-brand); font-size: 2.2rem;
+  font-weight: 700; letter-spacing: .1em; color: var(--text);
   text-transform: uppercase;
 }
 .footer__tag {
-  font-family: var(--display); font-size: .75rem; font-weight: 900;
+  font-family: var(--font-body); font-size: .7rem; font-weight: 600;
   letter-spacing: .22em; color: var(--muted); text-transform: uppercase;
 }
 .footer__socials { display: flex; gap: 18px; }
