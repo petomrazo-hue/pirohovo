@@ -5,9 +5,13 @@
   const navEl = document.getElementById('nav');
   if (!navEl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const configs = [
-    { id: 'navPirog1', minL: 130, minR: 200, speed: 2800, spread: 2200 },
-    { id: 'navPirog2', minL: 190, minR: 260, speed: 3800, spread: 2600 },
-    { id: 'navPirog3', minL: 110, minR: 170, speed: 4600, spread: 3200 },
+    { id: 'navPirog1', minL: 130, minR: 150, speed: 2800, spread: 2200 },
+    { id: 'navPirog2', minL: 180, minR: 180, speed: 3800, spread: 2600 },
+    { id: 'navPirog3', minL: 110, minR: 210, speed: 4600, spread: 3200 },
+    { id: 'navPirog4', minL: 160, minR: 160, speed: 3200, spread: 2800 },
+    { id: 'navPirog5', minL: 140, minR: 190, speed: 5200, spread: 2400 },
+    { id: 'navPirog6', minL: 120, minR: 170, speed: 2600, spread: 3600 },
+    { id: 'navPirog7', minL: 200, minR: 200, speed: 4200, spread: 3000 },
   ];
   configs.forEach(({ id, minL, minR, speed, spread }, i) => {
     const el = document.getElementById(id);
