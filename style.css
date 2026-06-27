@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PIROHOVO — Svetlý prémiový dizajn v12
+   PIROHOVO — Brand Typography v13
    ═══════════════════════════════════════════ */
 
 :root {
@@ -646,8 +646,91 @@ body::after {
 .alergeny-legal strong { color: var(--lt-text); }
 
 .menu-note {
-  text-align: center; font-size: .82rem; color: var(--muted);
+  text-align: center; font-size: .82rem; color: var(--lt-muted);
   letter-spacing: .03em; padding-top: 8px;
+}
+
+/* ═══════════════ BRAND FONT OVERRIDE — Bebas Neue všade ═══════════════ */
+/* Všetky h3 nadpisy → brand display font */
+h3 {
+  font-family: var(--display) !important;
+  font-weight: 400;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.pillar h3 {
+  font-size: 1.15rem;
+  color: var(--lt-text);
+  margin-bottom: 4px;
+}
+.iblock h3 {
+  font-size: .95rem;
+  color: var(--gold-d);
+}
+.photo-card h3 {
+  font-family: var(--display) !important;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: .06em;
+}
+.email-capture h2 {
+  font-family: var(--display);
+  letter-spacing: .06em;
+}
+/* Nav links → brand weight */
+.nav__links a {
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: .1em;
+  font-weight: 400;
+}
+/* Label uppercase brand */
+.label {
+  font-family: var(--display);
+  font-size: .85rem;
+  letter-spacing: .3em;
+  color: var(--gold-d);
+  margin-bottom: 14px;
+}
+/* Footer brand text */
+.footer__tag {
+  font-family: var(--display);
+  font-size: .75rem;
+  letter-spacing: .22em;
+  color: rgba(212,168,67,.5);
+}
+/* Trust bar items — brand accent */
+.trust__item {
+  font-family: var(--sans);
+  font-size: .88rem;
+}
+/* Hours table key col */
+.hours td:first-child {
+  font-family: var(--display);
+  letter-spacing: .05em;
+  font-size: .9rem;
+  color: var(--lt-dim);
+}
+/* Menu item name = display */
+.mitem__name {
+  font-family: var(--display) !important;
+  font-size: 1.15rem !important;
+  letter-spacing: .04em;
+  font-weight: 400 !important;
+  color: var(--lt-text);
+}
+/* Proof strip quotes styling */
+.proof-strip__quotes blockquote {
+  font-family: var(--serif);
+  font-size: .85rem;
+}
+/* Section h2 — stronger */
+.sec-head h2 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+}
+/* O-nas blockquote */
+.o-nas__blockquote {
+  font-family: var(--serif);
+  font-style: italic;
 }
 
 /* ═══════════════ GALLERY ═══════════════ */
