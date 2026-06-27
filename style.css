@@ -229,6 +229,14 @@ body::after {
   white-space: nowrap;
   line-height: 1;
 }
+.nav__logo-text .logo-heart {
+  font-size: 1.35em;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0.7;
+  margin: 0 0.01em;
+  text-shadow: 0 2px 12px rgba(192,57,43,.4);
+}
 .nav__logo-sub {
   font-family: var(--sans);
   font-size: .56rem;
@@ -381,6 +389,12 @@ body::after {
 }
 .hero__title .logo-heart {
   color: var(--red);
+  font-size: 1.55em;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0.62;
+  margin: 0 0.04em;
+  text-shadow: 0 4px 24px rgba(192,57,43,.5);
 }
 
 .hero__brand-claim {
