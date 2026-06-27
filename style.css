@@ -17,7 +17,7 @@
   --r:         14px;
   --max:       1200px;
   --serif:     'Playfair Display', Georgia, serif;
-  --display:   'Bebas Neue', 'Playfair Display', sans-serif;
+  --display:   'Barlow Condensed', 'Playfair Display', sans-serif;
   --sans:      'Inter', system-ui, sans-serif;
 
   /* Light theme */
@@ -78,14 +78,18 @@ body::after {
   will-change: opacity, transform;
 }
 
-/* 2 food slides × ~18s each = 36s total */
-.bg-slide.s1 { animation-delay:  0s; background-image: url('images/bg1.jpg'); background-position: center 85%; }
-.bg-slide.s2 { animation-delay: 18s; background-image: url('images/bg2.jpg'); background-position: center 82%; }
+/* 1 slide — bg2.jpg removed (was IG post with overlaid text) */
+.bg-slide.s1 { animation-delay: 0s; background-image: url('images/bg1.jpg'); background-position: center 85%; animation: bgStatic 1s forwards; }
 
 @keyframes bgFade {
   0%          { opacity: 0;   transform: scale(1); }
   6%, 45%     { opacity: 1;   transform: scale(1.07); }
   55%, 100%   { opacity: 0;   transform: scale(1.1); }
+}
+@keyframes bgStatic {
+  0%   { opacity: 0; transform: scale(1); }
+  8%   { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1.06); }
 }
 
 .bg-overlay {
@@ -223,7 +227,7 @@ body::after {
 .nav__logo-text {
   font-family: var(--display);
   font-size: clamp(1.8rem, 2.6vw, 2.6rem);
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: .12em;
   color: var(--gold);
   white-space: nowrap;
@@ -382,7 +386,7 @@ body::after {
 .hero__title {
   font-family: var(--display);
   font-size: clamp(4.5rem, 14vw, 10.5rem);
-  font-weight: 400; line-height: .9;
+  font-weight: 800; line-height: .9;
   letter-spacing: .1em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 10px;
   text-shadow: 0 4px 60px rgba(0,0,0,.6), 0 0 100px rgba(212,168,67,.15);
