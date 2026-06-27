@@ -1203,8 +1203,8 @@ h3 {
   background: #0e0d07;
   border-top: 1px solid rgba(255,255,255,.12);
   padding: 10px 16px 14px;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 6px;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -1232,8 +1232,8 @@ body { padding-bottom: 74px; }
 .mob-btn--call:active, .mob-btn--nav:active { background: rgba(255,255,255,.14); }
 
 @media (max-width: 768px) {
-  /* bar already always-on; mobile-specific tweaks only */
-  .mobile-order-bar { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  /* bar already always-on; mobile keeps same 3-col layout */
+  .mobile-order-bar { grid-template-columns: 2fr 1fr 1fr; }
 }
 
 /* ═══ GOOGLE LOGO ═══ */
@@ -1244,7 +1244,16 @@ body { padding-bottom: 74px; }
 .btn--wolt:hover { background: #0087c0; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,157,224,.4); }
 .btn--bolt { background: #34D186; color: #1a1a1a; border-color: #34D186; }
 .btn--bolt:hover { background: #28b872; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(52,209,134,.4); }
-.hero__delivery-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+/* hero__delivery-row deprecated; now hero__ctas has Wolt/Bolt */
+.btn--hero-delivery { font-size: .95rem; font-weight: 700; padding: 14px 28px; gap: 10px; min-width: 190px; }
+.hero__secondary-ctas { display: flex; justify-content: center; margin-top: 10px; }
+/* menu order strip */
+.menu-order-strip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 18px 0 12px; padding: 10px 16px; background: rgba(255,255,255,.04); border-radius: 10px; border: 1px solid rgba(255,255,255,.08); }
+.menu-order-label { font-size: .8rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+.menu-order-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-decoration: none; transition: opacity .18s, transform .18s; }
+.menu-order-btn--wolt { background: #009DE0; color: #fff; }
+.menu-order-btn--bolt { background: #34D186; color: #1a1a1a; }
+.menu-order-btn:hover { opacity: .85; transform: translateY(-1px); }
 .mob-btn--wolt { background: #009DE0; color: #fff; border: none; }
 .mob-btn--bolt { background: #34D186; color: #1a1a1a; border: none; }
 .mob-btn--wolt:active, .mob-btn--bolt:active { opacity: .85; }

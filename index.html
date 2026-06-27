@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pirohovo – Domáce pirohy drive-through | Bratislava</title>
-  <meta name="description" content="59× ★★★★★ Google. Ručne robené pirohy v Bratislave – drive-through alebo rozvoz. Prešovská 349/38B, Ut–Ne 11–20:00. Objednaj cez WhatsApp.">
+  <meta name="description" content="59× ★★★★★ Google. Ručne robené pirohy v Bratislave – drive-through alebo rozvoz. Prešovská 349/38B, Ut–Ne 11–20:00. Objednaj cez Wolt alebo Bolt.">
   <meta name="keywords" content="pirohy Bratislava, pirohovo, drive-through Bratislava, rozvoz jedla Bratislava, bryndzové pirohy, domáce pirohy">
   <meta name="theme-color" content="#14130c">
   <link rel="canonical" href="https://pirohovo.eu/">
@@ -36,8 +36,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/ig-stanek.png">
 
-  <link rel="stylesheet" href="style.css?v=29">
+  <link rel="stylesheet" href="style.css?v=30">
   <link rel="manifest" href="site.webmanifest">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.instagram.com https://formsubmit.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://formsubmit.co https://www.google-analytics.com; frame-src https://www.instagram.com https://www.google.com; object-src 'none';">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 
   <!-- Google Consent Mode v2 — default deny (GDPR SK §109 + ePrivacy) -->
@@ -183,25 +184,20 @@
     <p class="hero__brand-claim">VARÍME S LÁSKOU</p>
     <p class="hero__sub">Domáce pirohy · Drive-through · Prešovská, Bratislava</p>
     <div class="hero__ctas">
-      <!-- A/B TEST: Variant A — WhatsApp CTA -->
-      <a href="https://wa.me/421915671603?text=Dobrý%20deň%2C%20chcem%20si%20objednať%20pirohy." class="btn btn--gold btn--pulse" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Objednaj cez WhatsApp →
+      <a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" target="_blank" rel="noopener noreferrer" class="btn btn--wolt btn--hero-delivery" aria-label="Objednať cez Wolt">
+        <svg viewBox="0 0 32 32" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#009DE0"/><polygon points="3,9 7.5,9 12,22 14.5,13.5 17.5,13.5 20,22 24.5,9 29,9 24,24 20,24 16,15 12,24 8,24" fill="#fff"/></svg>
+        Objednaj cez Wolt
       </a>
+      <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" target="_blank" rel="noopener noreferrer" class="btn btn--bolt btn--hero-delivery" aria-label="Objednať cez Bolt">
+        <svg viewBox="0 0 32 32" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#34D186"/><polygon points="20,3 10,18 16,18 13,30 22,14 16,14" fill="#fff"/></svg>
+        Objednaj cez Bolt
+      </a>
+    </div>
+    <div class="hero__secondary-ctas">
       <a href="#menu" class="btn btn--outline">Čo varíme dnes</a>
     </div>
-    <div class="hero__delivery-row">
-      <a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" target="_blank" rel="noopener" class="btn btn--wolt" aria-label="Objednať cez Wolt">
-        <svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#009DE0"/><polygon points="3,9 7.5,9 12,22 14.5,13.5 17.5,13.5 20,22 24.5,9 29,9 24,24 20,24 16,15 12,24 8,24" fill="#fff"/></svg>
-        Objednať cez Wolt
-      </a>
-      <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" target="_blank" rel="noopener" class="btn btn--bolt" aria-label="Objednať cez Bolt">
-        <svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#34D186"/><polygon points="20,3 10,18 16,18 13,30 22,14 16,14" fill="#fff"/></svg>
-        Objednať cez Bolt
-      </a>
-    </div>
     <div class="hero__meta-row">
-      <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" target="_blank" rel="noopener" class="hero__meta-item hero__meta-reviews" aria-label="Zobraziť 59 recenzií na Google Maps"><span class="hero__star" aria-hidden="true">★★★★★</span>&nbsp;<strong>5,0</strong> · 59 recenzií <svg class="logo-google" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google</a>
+      <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" target="_blank" rel="noopener noreferrer" class="hero__meta-item hero__meta-reviews" aria-label="Zobraziť 59 recenzií na Google Maps"><span class="hero__star" aria-hidden="true">★★★★★</span>&nbsp;<strong>5,0</strong> · 59 recenzií <svg class="logo-google" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google</a>
       <span class="hero__meta-sep">·</span>
       <span class="hero__meta-item">Ut–Ne · 11:00–20:00</span>
       <span class="hero__meta-sep">·</span>
@@ -215,14 +211,14 @@
 <div class="trust">
   <ul role="list" class="container trust__row">
     <li class="trust__item trust__item--award">
-      <a href="https://www.zlatafirma.eu/company/pirohovo-645291" target="_blank" rel="noopener" class="trust__award-link" aria-label="Zlatá Firma 2026 – víťaz ocenenia">
+      <a href="https://www.zlatafirma.eu/company/pirohovo-645291" target="_blank" rel="noopener noreferrer" class="trust__award-link" aria-label="Zlatá Firma 2026 – víťaz ocenenia">
         <span class="trust__award-star" aria-hidden="true">★</span> <strong>Zlatá Firma 2026</strong>
       </a>
     </li>
     <li class="trust__item"><span class="trust__dot2" aria-hidden="true">—</span>Domáca výroba každý deň</li>
     <li class="trust__item"><span class="trust__dot2" aria-hidden="true">—</span>Ut–Ne · 11:00–20:00</li>
     <li class="trust__item"><span class="trust__dot2" aria-hidden="true">—</span>od <strong>8,10 €</strong></li>
-    <li class="trust__item"><span class="trust__dot2" aria-hidden="true">—</span>Objednaj cez WhatsApp · <a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><svg viewBox="0 0 32 32" width="14" height="14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-2px"><rect width="32" height="32" rx="5" fill="#009DE0"/><polygon points="3,9 7.5,9 12,22 14.5,13.5 17.5,13.5 20,22 24.5,9 29,9 24,24 20,24 16,15 12,24 8,24" fill="#fff"/></svg> Wolt</a> · <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><svg viewBox="0 0 32 32" width="14" height="14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-2px"><rect width="32" height="32" rx="5" fill="#34D186"/><polygon points="20,3 10,18 16,18 13,30 22,14 16,14" fill="#fff"/></svg> Bolt</a></li>
+    <li class="trust__item"><span class="trust__dot2" aria-hidden="true">—</span><a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none"><svg viewBox="0 0 32 32" width="14" height="14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-2px"><rect width="32" height="32" rx="5" fill="#009DE0"/><polygon points="3,9 7.5,9 12,22 14.5,13.5 17.5,13.5 20,22 24.5,9 29,9 24,24 20,24 16,15 12,24 8,24" fill="#fff"/></svg> Wolt</a> · <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none"><svg viewBox="0 0 32 32" width="14" height="14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-2px"><rect width="32" height="32" rx="5" fill="#34D186"/><polygon points="20,3 10,18 16,18 13,30 22,14 16,14" fill="#fff"/></svg> Bolt</a></li>
   </ul>
 </div>
 
@@ -235,7 +231,7 @@
         <strong class="reviews-num">5,0</strong>
         <span class="reviews-label"><svg class="logo-google" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google · 59 recenzií</span>
       </div>
-      <a href="https://www.zlatafirma.eu/company/pirohovo-645291" target="_blank" rel="noopener" class="zf-badge" aria-label="Zlatá Firma 2026">
+      <a href="https://www.zlatafirma.eu/company/pirohovo-645291" target="_blank" rel="noopener noreferrer" class="zf-badge" aria-label="Zlatá Firma 2026">
         <span class="zf-badge__star">★</span>
         <span class="zf-badge__text"><strong>Zlatá Firma</strong><br><small>víťaz 2026</small></span>
       </a>
@@ -267,7 +263,7 @@
       </blockquote>
     </div>
     <div class="reviews-cta">
-      <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" target="_blank" rel="noopener" class="btn btn--outline">
+      <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         Čítaj všetkých 59 recenzií na Google Maps →
       </a>
@@ -306,6 +302,18 @@
         <span class="cat-card__icon">🥤</span>
         <span>Nápoje</span>
       </button>
+    </div>
+    <!-- Order strip -->
+    <div class="menu-order-strip">
+      <span class="menu-order-label">Objednaj online:</span>
+      <a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" target="_blank" rel="noopener noreferrer" class="menu-order-btn menu-order-btn--wolt">
+        <svg viewBox="0 0 32 32" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#009DE0"/><polygon points="3,9 7.5,9 12,22 14.5,13.5 17.5,13.5 20,22 24.5,9 29,9 24,24 20,24 16,15 12,24 8,24" fill="#fff"/></svg>
+        Wolt
+      </a>
+      <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" target="_blank" rel="noopener noreferrer" class="menu-order-btn menu-order-btn--bolt">
+        <svg viewBox="0 0 32 32" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#34D186"/><polygon points="20,3 10,18 16,18 13,30 22,14 16,14" fill="#fff"/></svg>
+        Bolt
+      </a>
     </div>
 
     <div class="menu-tabs" role="tablist" aria-label="Filtrovať menu podľa kategórie" style="display:none">
@@ -347,7 +355,7 @@
         </div>
         <ul class="menu-items">
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-bryndzove.png');background-position:center 55%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-bryndzove.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Bryndzové <span class="mbadge mbadge--star">★ Bestseller</span></span>
@@ -359,7 +367,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-krevetove.png');background-position:center 40%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-krevetove.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Krevetové v sépiovom ceste <span class="mbadge mbadge--new">NOVINKA</span></span>
@@ -371,7 +379,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-smoked.png');background-position:center 60%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-udenaky.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Údeniaky</span>
@@ -382,7 +390,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-smoked.png');background-position:center 35%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-udenaky.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">S údeným mäsom</span>
@@ -393,7 +401,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--heart" aria-hidden="true"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-spenatove.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Špenátové s Ricottou</span>
@@ -404,7 +412,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="slane">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-tatarcane.png');background-position:center 30%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-tatarcane-slane.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Tatárčané slané</span>
@@ -425,7 +433,7 @@
         </div>
         <ul class="menu-items">
           <li class="mitem" data-cat="sladke">
-            <div class="mitem__img mitem__img--heart" aria-hidden="true"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-perky.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Perky</span>
@@ -436,7 +444,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="sladke">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-tatarcane.png');background-position:center 65%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-tatarcane-sladke.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Tatárčané sladké</span>
@@ -447,7 +455,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="sladke">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-easter.png');background-position:center 75%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-marhulove.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Marhuľové <span class="mbadge mbadge--season">Sezónne</span></span>
@@ -469,7 +477,7 @@
         </div>
         <ul class="menu-items">
           <li class="mitem" data-cat="sucance">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-sulance.png');background-position:center 60%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-sulance-mak.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Zemiakové šúľance sladké</span>
@@ -480,7 +488,7 @@
             </div>
           </li>
           <li class="mitem" data-cat="sucance">
-            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/ig-sulance.png');background-position:center 30%"></div>
+            <div class="mitem__img mitem__img--photo" aria-hidden="true" style="background-image:url('images/prod-sulance-bryndzove.jpg');background-position:center center"></div>
             <div class="mitem__content">
               <div class="mitem__header">
                 <span class="mitem__name">Šúľance s kapustou a slaninkou</span>
@@ -629,7 +637,7 @@
       <p>Čerstvé, poctivé, s láskou</p>
     </div>
     <div class="photo-grid photo-grid--featured">
-      <a class="photo-card photo-card--large reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+      <a class="photo-card photo-card--large reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener noreferrer">
         <figure class="photo-card__figure">
           <img src="images/ig-krevetove.png" alt="Krevetové v sépiovom ceste — dramatická sépiová plnka s krevetu" loading="lazy" width="900" height="700" class="photo-card__img" style="object-position: center 40%">
         </figure>
@@ -639,7 +647,7 @@
         </div>
         <span class="photo-card__link">@pirohovo →</span>
       </a>
-      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener noreferrer">
         <figure class="photo-card__figure">
           <img src="images/ig-easter.png" alt="Farebné pirohy — jarná kolekcia Pirohovo" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 50%">
         </figure>
@@ -649,7 +657,7 @@
         </div>
         <span class="photo-card__link">@pirohovo →</span>
       </a>
-      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener noreferrer">
         <figure class="photo-card__figure">
           <img src="images/ig-bryndzove.png" alt="Bryndzové pirohy — klasika Pirohovo" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 55%">
         </figure>
@@ -659,7 +667,7 @@
         </div>
         <span class="photo-card__link">@pirohovo →</span>
       </a>
-      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener noreferrer">
         <figure class="photo-card__figure">
           <img src="images/ig-sulance.png" alt="Šúľance s makovým posypom a višňovým kompótom" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 50%">
         </figure>
@@ -669,7 +677,7 @@
         </div>
         <span class="photo-card__link">@pirohovo →</span>
       </a>
-      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener noreferrer">
         <figure class="photo-card__figure">
           <img src="images/ig-lentil.png" alt="Šošovicové pirohy — vegánska špeciálka Pirohovo" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 45%">
         </figure>
@@ -679,7 +687,7 @@
         </div>
         <span class="photo-card__link">@pirohovo →</span>
       </a>
-      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener">
+      <a class="photo-card reveal" href="https://www.instagram.com/pirohovo/" target="_blank" rel="noopener noreferrer">
         <figure class="photo-card__figure">
           <img src="images/ig-black-cup.png" alt="Čierne pirohy v papierovom poháriku — Pirohovo stánok" loading="lazy" width="800" height="600" class="photo-card__img" style="object-position: center 40%">
         </figure>
@@ -691,11 +699,11 @@
       </a>
     </div>
     <div class="gallery-cta">
-      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener" class="btn btn--outline">
+      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         @pirohovo na Instagrame
       </a>
-      <a href="https://www.facebook.com/pirohovo" target="_blank" rel="noopener" class="btn btn--outline">
+      <a href="https://www.facebook.com/pirohovo" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         @pirohovo na Facebooku
       </a>
@@ -711,10 +719,11 @@
     <form class="email-form" action="https://formsubmit.co/info@pirohovo.eu" method="POST">
       <input type="email" name="email" placeholder="tvoj@email.sk" required aria-label="E-mailová adresa">
       <button type="submit" class="btn btn--gold">Chcem vedieť o novinkách</button>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_subject" value="Nový odberateľ Pirohovo">
     </form>
-    <p class="email-gdpr">Bez spamu. Odhlás sa kedykoľvek jedným klikom.</p>
+    <p class="email-gdpr">Bez spamu. Odhlásenie jedným klikom. Odoslaním súhlasíš so spracovaním e-mailu na zasielanie noviniek podľa <a href="gdpr.html" style="color:inherit">Zásad ochrany osobných údajov</a>.</p>
   </div>
 </section>
 
@@ -728,42 +737,42 @@
     </div>
     <div class="reels-embed-grid">
 
-      <a href="https://www.instagram.com/reel/DW_7S4OiQH9/" target="_blank" rel="noopener" class="reel-link reveal">
+      <a href="https://www.instagram.com/reel/DW_7S4OiQH9/" target="_blank" rel="noopener noreferrer" class="reel-link reveal">
         <div class="reel-embed">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DW_7S4OiQH9/" data-instgrm-version="14" style="background:#14130c; border:1px solid rgba(212,168,67,.18); border-radius:14px; margin:0; max-width:100%; min-width:220px; width:100%; padding:0;"></blockquote>
           <p class="reel-label">3 629 zobrazení · Poctivé jedlo, poctivá príprava</p>
         </div>
       </a>
 
-      <a href="https://www.instagram.com/reel/DYRYkW1snYo/" target="_blank" rel="noopener" class="reel-link reveal">
+      <a href="https://www.instagram.com/reel/DYRYkW1snYo/" target="_blank" rel="noopener noreferrer" class="reel-link reveal">
         <div class="reel-embed">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYRYkW1snYo/" data-instgrm-version="14" style="background:#14130c; border:1px solid rgba(212,168,67,.18); border-radius:14px; margin:0; max-width:100%; min-width:220px; width:100%; padding:0;"></blockquote>
           <p class="reel-label">Reel #2</p>
         </div>
       </a>
 
-      <a href="https://www.instagram.com/reel/DXfG0g8DKbO/" target="_blank" rel="noopener" class="reel-link reveal">
+      <a href="https://www.instagram.com/reel/DXfG0g8DKbO/" target="_blank" rel="noopener noreferrer" class="reel-link reveal">
         <div class="reel-embed">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXfG0g8DKbO/" data-instgrm-version="14" style="background:#14130c; border:1px solid rgba(212,168,67,.18); border-radius:14px; margin:0; max-width:100%; min-width:220px; width:100%; padding:0;"></blockquote>
           <p class="reel-label">1 802 zobrazení · Koliba v Bratislave na Bajkalskej?</p>
         </div>
       </a>
 
-      <a href="https://www.instagram.com/reel/DXQxy7_CM9C/" target="_blank" rel="noopener" class="reel-link reveal">
+      <a href="https://www.instagram.com/reel/DXQxy7_CM9C/" target="_blank" rel="noopener noreferrer" class="reel-link reveal">
         <div class="reel-embed">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXQxy7_CM9C/" data-instgrm-version="14" style="background:#14130c; border:1px solid rgba(212,168,67,.18); border-radius:14px; margin:0; max-width:100%; min-width:220px; width:100%; padding:0;"></blockquote>
           <p class="reel-label">Reel #4</p>
         </div>
       </a>
 
-      <a href="https://www.instagram.com/reel/DVfm02AiLdQ/" target="_blank" rel="noopener" class="reel-link reveal">
+      <a href="https://www.instagram.com/reel/DVfm02AiLdQ/" target="_blank" rel="noopener noreferrer" class="reel-link reveal">
         <div class="reel-embed">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVfm02AiLdQ/" data-instgrm-version="14" style="background:#14130c; border:1px solid rgba(212,168,67,.18); border-radius:14px; margin:0; max-width:100%; min-width:220px; width:100%; padding:0;"></blockquote>
           <p class="reel-label">Reel #5</p>
         </div>
       </a>
 
-      <a href="https://www.instagram.com/reel/DYy0P_EIur9/" target="_blank" rel="noopener" class="reel-link reveal">
+      <a href="https://www.instagram.com/reel/DYy0P_EIur9/" target="_blank" rel="noopener noreferrer" class="reel-link reveal">
         <div class="reel-embed">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYy0P_EIur9/" data-instgrm-version="14" style="background:#14130c; border:1px solid rgba(212,168,67,.18); border-radius:14px; margin:0; max-width:100%; min-width:220px; width:100%; padding:0;"></blockquote>
           <p class="reel-label">855 zobrazení · Cesto z lásky — každý pirog ručne</p>
@@ -772,7 +781,7 @@
 
     </div>
     <div class="reels-cta">
-      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener" class="btn btn--outline">
+      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         Sledovať @pirohovo na Instagrame
       </a>
@@ -804,7 +813,7 @@
           <div>
             <strong>59 zákazníkov. Každý dal 5 hviezdičiek.</strong>
             <br>
-            <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" class="ilink" target="_blank" rel="noopener">Overí Google →</a>
+            <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" class="ilink" target="_blank" rel="noopener noreferrer">Overí Google →</a>
           </div>
         </div>
         <div class="rating-box rating-box--award" style="margin-top:10px;">
@@ -812,7 +821,7 @@
           <div>
             <strong>Víťaz ocenenia Zlatá Firma 2026</strong>
             <br>
-            <a href="https://www.zlatafirma.eu/company/pirohovo-645291" class="ilink" target="_blank" rel="noopener">Overiť certifikát →</a>
+            <a href="https://www.zlatafirma.eu/company/pirohovo-645291" class="ilink" target="_blank" rel="noopener noreferrer">Overiť certifikát →</a>
           </div>
         </div>
       </div>
@@ -852,7 +861,7 @@
         <div class="iblock">
           <h3>Adresa</h3>
           <p>Prešovská 349/38B<br>821 02 Bratislava</p>
-          <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" class="ilink" target="_blank" rel="noopener">Navigovať cez Google Maps →</a>
+          <a href="https://maps.app.goo.gl/NEu2ToTrzShk7BaFA" class="ilink" target="_blank" rel="noopener noreferrer">Navigovať cez Google Maps →</a>
         </div>
         <div class="iblock">
           <h3>Otváracie hodiny</h3>
@@ -899,10 +908,10 @@
       <span class="footer__tag">Varíme s láskou</span>
     </div>
     <div class="footer__socials">
-      <a href="https://www.facebook.com/pirohovo" target="_blank" rel="noopener" aria-label="Facebook">
+      <a href="https://www.facebook.com/pirohovo" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       </a>
-      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://www.instagram.com/pirohovo" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </a>
     </div>
@@ -911,7 +920,7 @@
       <span class="footer__sep">·</span>
       <a href="gdpr.html">Ochrana osobných údajov</a>
       <span class="footer__sep">·</span>
-      <a href="https://www.soi.sk" target="_blank" rel="noopener">SOI</a>
+      <a href="https://www.soi.sk" target="_blank" rel="noopener noreferrer">SOI</a>
     </div>
     <div class="footer__company">
       <address>
@@ -926,7 +935,7 @@
 
 <!-- ═══════════════ FLOATING PRVKY ═══════════════ -->
 <!-- WhatsApp -->
-<a href="https://wa.me/421915671603?text=Dobrý%20deň%2C%20chcem%20si%20objednať%20pirohy." class="float-wa" target="_blank" rel="noopener" aria-label="Kontaktuj nás cez WhatsApp">
+<a href="https://wa.me/421915671603?text=Dobrý%20deň%2C%20chcem%20si%20objednať%20pirohy." class="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Kontaktuj nás cez WhatsApp">
   <span class="float-wa__tooltip">Objednaj — odpovíme do 5 min</span>
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
@@ -952,26 +961,23 @@
 
 <!-- Sticky mobile order bar -->
 <div class="mobile-order-bar" aria-label="Rýchle akcie">
-  <a href="https://wa.me/421915671603?text=Dobrý%20deň%2C%20chcem%20si%20objednať%20pirohy." class="mob-btn mob-btn--order" target="_blank" rel="noopener">
-    <svg class="mob-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Objednať
-  </a>
+
   <a href="tel:0915671603" class="mob-btn mob-btn--call">
     <svg class="mob-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 9.37 19.79 19.79 0 0 1 1.61 .73 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     Volať
   </a>
-  <a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" class="mob-btn mob-btn--wolt" target="_blank" rel="noopener" aria-label="Objednať cez Wolt">
+  <a href="https://wolt.com/sk/svk/bratislava/restaurant/pirohovo" class="mob-btn mob-btn--wolt" target="_blank" rel="noopener noreferrer" aria-label="Objednať cez Wolt">
     <svg class="mob-btn__icon" viewBox="0 0 32 32" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#009DE0"/><polygon points="3,9 7.5,9 12,22 14.5,13.5 17.5,13.5 20,22 24.5,9 29,9 24,24 20,24 16,15 12,24 8,24" fill="#fff"/></svg>
     Wolt
   </a>
-  <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" class="mob-btn mob-btn--bolt" target="_blank" rel="noopener" aria-label="Objednať cez Bolt">
+  <a href="https://food.bolt.eu/sk-sk/326-bratislava/p/168875-pirohovo/" class="mob-btn mob-btn--bolt" target="_blank" rel="noopener noreferrer" aria-label="Objednať cez Bolt">
     <svg class="mob-btn__icon" viewBox="0 0 32 32" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#34D186"/><polygon points="20,3 10,18 16,18 13,30 22,14 16,14" fill="#fff"/></svg>
     Bolt
   </a>
 </div>
 
 <!-- Instagram embed script -->
-<script async src="//www.instagram.com/embed.js"></script>
+<script async src="https://www.instagram.com/embed.js"></script>
 
 <script src="app.js?v=11"></script>
 </body>

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /images/favicon-16x16.png
+Disallow: /images/favicon-32x32.png
 
 Sitemap: https://pirohovo.eu/sitemap.xml
