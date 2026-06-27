@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PIROHOVO — Dark Brand Redesign v24
+   PIROHOVO — Dark Brand Redesign v25
    ═══════════════════════════════════════════ */
 
 :root {
@@ -41,10 +41,10 @@ html { scroll-behavior: smooth; }
 .logo-heart { color: var(--red); }
 .brand-heart-svg {
   display: inline-block;
-  vertical-align: -0.08em;
-  width: 0.72em;
-  height: 0.62em;
-  margin: 0 0.02em;
+  vertical-align: -0.12em;
+  width: 0.50em;
+  height: 0.72em;
+  margin: 0 0.05em;
   flex-shrink: 0;
 }
 
@@ -1178,3 +1178,42 @@ h3 {
 .nav__burger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .nav__burger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav__burger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ═══════════════ STICKY MOBILE ORDER BAR ═══════════════ */
+.mobile-order-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #0e0d07;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 10px 16px 14px;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.mob-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; border-radius: 12px; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: .72rem; font-weight: 600;
+  letter-spacing: .04em; text-decoration: none; transition: all .18s;
+  padding: 10px 8px;
+}
+.mob-btn__icon { font-size: 1.2rem; line-height: 1; }
+.mob-btn--order {
+  background: var(--red); color: #fff;
+  font-size: .82rem; font-weight: 700;
+  box-shadow: 0 4px 20px rgba(212,44,31,.4);
+}
+.mob-btn--order:active { transform: scale(.97); }
+.mob-btn--call  { background: rgba(255,255,255,.07); color: var(--text); border: 1px solid rgba(255,255,255,.12); }
+.mob-btn--nav   { background: rgba(255,255,255,.07); color: var(--text); border: 1px solid rgba(255,255,255,.12); }
+.mob-btn--call:active, .mob-btn--nav:active { background: rgba(255,255,255,.14); }
+
+@media (max-width: 768px) {
+  .mobile-order-bar { display: grid; }
+  /* push float-wa up above order bar */
+  .float-wa { bottom: 88px; }
+  .float-top { bottom: 88px; right: 60px; }
+  /* body padding so last section not hidden behind bar */
+  body { padding-bottom: 74px; }
+}

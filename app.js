@@ -43,13 +43,18 @@ const mItems = document.querySelectorAll('.mitem');
 
 function applyFilter(f) {
   if (f === 'all') {
-    menuCats.forEach(c => c.classList.remove('hidden'));
-    mItems.forEach(i => i.style.display = '');
+    menuCats.forEach(c => { c.classList.remove('hidden'); c.classList.add('visible'); });
+    mItems.forEach(i => { i.style.display = ''; i.classList.add('visible'); });
   } else {
     menuCats.forEach(cat => {
       const groupItems = cat.querySelectorAll('.mitem');
       const match = [...groupItems].some(i => i.dataset.cat === f);
-      cat.classList.toggle('hidden', !match);
+      if (match) {
+        cat.classList.remove('hidden');
+        cat.classList.add('visible');
+      } else {
+        cat.classList.add('hidden');
+      }
       groupItems.forEach(i => { i.style.display = i.dataset.cat === f ? '' : 'none'; });
     });
   }
