@@ -1351,13 +1351,12 @@ body::after {
 }
 .mob-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 .mob-btn__icon { font-size: 1.15rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
-.mob-btn--order { background: var(--red); color: #fff; font-size: .8rem; font-weight: 700; box-shadow: 0 4px 20px rgba(212,44,31,.4); }
+.mob-btn--order { background: var(--red); color: #fff; font-size: .8rem; font-weight: 700; box-shadow: 0 4px 18px rgba(212,44,31,.35); }
 .mob-btn--order:active { transform: scale(.97); }
-.mob-btn--wolt  { background: #009DE0; color: #fff; }
-.mob-btn--bolt  { background: #34D186; color: #111; }
-.mob-btn--call  { background: rgba(255,255,255,.07); color: var(--text); border: 1px solid rgba(255,255,255,.1); }
-.mob-btn--wolt:active, .mob-btn--bolt:active { opacity: .82; }
-.mob-btn--call:active { background: rgba(255,255,255,.14); }
+.mob-btn--wolt  { background: rgba(255,255,255,.05); color: var(--text); border: 1px solid rgba(0,157,224,.45); }
+.mob-btn--bolt  { background: rgba(255,255,255,.05); color: var(--text); border: 1px solid rgba(52,209,134,.42); }
+.mob-btn--call  { background: rgba(255,255,255,.05); color: var(--text); border: 1px solid rgba(255,255,255,.1); }
+.mob-btn--wolt:active, .mob-btn--bolt:active, .mob-btn--call:active { background: rgba(255,255,255,.1); }
 
 /* ── Easter egg: header plný pirohov (klik na logo) ── */
 .egg-pirog {
