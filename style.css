@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PIROHOVO — Dark Brand Redesign v26
+   PIROHOVO — Dark Brand Redesign v27
    ═══════════════════════════════════════════ */
 
 :root {
@@ -41,10 +41,10 @@ html { scroll-behavior: smooth; }
 .logo-heart { color: var(--red); }
 .brand-heart-svg {
   display: inline-block;
-  vertical-align: -0.10em;
-  width: 0.56em;
+  vertical-align: -0.12em;
+  width: 0.54em;
   height: 0.60em;
-  margin: 0 0.05em;
+  margin: 0 0.04em;
   flex-shrink: 0;
 }
 
