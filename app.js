@@ -1,31 +1,4 @@
-/* Pirohovo app.js v36 */
-
-// ── Nav pirohy roam (3 independent) ──
-(function () {
-  const navEl = document.getElementById('nav');
-  if (!navEl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const configs = [
-    { id: 'navPirog1', minL: 130, minR: 150, speed: 2800, spread: 2200 },
-    { id: 'navPirog2', minL: 180, minR: 180, speed: 3800, spread: 2600 },
-    { id: 'navPirog3', minL: 110, minR: 210, speed: 4600, spread: 3200 },
-    { id: 'navPirog4', minL: 160, minR: 160, speed: 3200, spread: 2800 },
-    { id: 'navPirog5', minL: 140, minR: 190, speed: 5200, spread: 2400 },
-    { id: 'navPirog6', minL: 120, minR: 170, speed: 2600, spread: 3600 },
-    { id: 'navPirog7', minL: 200, minR: 200, speed: 4200, spread: 3000 },
-  ];
-  configs.forEach(({ id, minL, minR, speed, spread }, i) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    function roam() {
-      const w = navEl.offsetWidth;
-      const max = w - minR;
-      if (max <= minL) return;
-      el.style.left = (minL + Math.random() * (max - minL)) + 'px';
-      setTimeout(roam, speed + Math.random() * spread);
-    }
-    setTimeout(roam, 500 + i * 1100);
-  });
-})();
+/* Pirohovo app.js v38 */
 
 // ── Closing countdown ──
 (function () {
@@ -262,42 +235,3 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   });
 })();
 
-// ── Cookie banner + Google Consent Mode v2 ──
-(function () {
-  const banner  = document.getElementById('cookieBanner');
-  const accept  = document.getElementById('cookieAccept');
-  const decline = document.getElementById('cookieDecline');
-  if (!banner) return;
-
-  function gtag(...args) { if (window.dataLayer) window.dataLayer.push(args); }
-
-  function grantAll() {
-    gtag('consent', 'update', {
-      'ad_storage':         'granted',
-      'ad_user_data':       'granted',
-      'ad_personalization': 'granted',
-      'analytics_storage':  'granted'
-    });
-  }
-
-  const saved = localStorage.getItem('pirohovoCookies');
-  if (saved === 'all') { grantAll(); }
-  else if (!saved) { setTimeout(() => { banner.style.display = 'block'; }, 1600); }
-
-  function closeBanner() {
-    banner.style.transition = 'transform .32s ease, opacity .32s';
-    banner.style.opacity = '0';
-    banner.style.transform = 'translateY(100%)';
-    setTimeout(() => { banner.style.display = 'none'; }, 340);
-  }
-
-  if (accept) accept.addEventListener('click', () => {
-    localStorage.setItem('pirohovoCookies', 'all');
-    grantAll();
-    closeBanner();
-  });
-  if (decline) decline.addEventListener('click', () => {
-    localStorage.setItem('pirohovoCookies', 'essential');
-    closeBanner();
-  });
-})();
