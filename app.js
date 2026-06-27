@@ -1,4 +1,21 @@
-/* Pirohovo app.js v31 */
+/* Pirohovo app.js v33 */
+
+// ── Nav pirog roam ──
+(function () {
+  const pirog = document.getElementById('navPirog');
+  const navEl = document.getElementById('nav');
+  if (!pirog || !navEl) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function roam() {
+    const w = navEl.offsetWidth;
+    const minX = 120, maxX = w - 180;
+    if (maxX <= minX) return;
+    const x = minX + Math.random() * (maxX - minX);
+    pirog.style.left = x + 'px';
+    setTimeout(roam, 3500 + Math.random() * 3000);
+  }
+  setTimeout(roam, 1500);
+})();
 
 // ── Nav scroll ──
 const nav = document.getElementById('nav');

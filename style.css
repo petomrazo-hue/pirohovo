@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PIROHOVO — Premium Restaurant Design v32
+   PIROHOVO — Premium Restaurant Design v33
    ═══════════════════════════════════════════ */
 
 /* ── 1. TOKENS ─────────────────────────────── */
@@ -77,25 +77,26 @@ body::after {
   flex-shrink: 0;
 }
 
-/* ── FLOATING PIROGY (hero decoration) ──────── */
-.hero__floaty {
-  position: absolute; inset: 0; z-index: 2;
-  pointer-events: none; overflow: hidden;
+/* ── FLOATING PIROG (nav header decoration) ──── */
+.nav-pirog {
+  position: absolute;
+  top: 50%; transform: translateY(-50%) rotate(-8deg);
+  left: 50%;
+  font-size: 1.15rem;
+  opacity: 0.55;
+  pointer-events: none; user-select: none;
+  z-index: 10;
+  will-change: left, transform;
+  transition: left 1.4s cubic-bezier(.45,.05,.55,.95), opacity .4s;
+  animation: navPirogBob 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 1px 6px rgba(212,44,31,.35));
 }
-.hero__floaty span {
-  position: absolute; bottom: -80px; left: var(--x);
-  font-size: calc(var(--s, 1) * 2rem);
-  opacity: 0;
-  animation: pirogRise var(--d, 10s) var(--del, 0s) ease-in-out infinite;
-  filter: drop-shadow(0 2px 8px rgba(212,44,31,.25));
+@keyframes navPirogBob {
+  0%,100% { transform: translateY(-50%) rotate(-8deg); }
+  50%     { transform: translateY(calc(-50% - 5px)) rotate(6deg); }
 }
-@keyframes pirogRise {
-  0%   { opacity: 0;    transform: translateY(0)       rotate(0deg); }
-  12%  { opacity: .22; }
-  80%  { opacity: .14; }
-  100% { opacity: 0;    transform: translateY(-110vh)   rotate(var(--r, 25deg)); }
-}
-@media (prefers-reduced-motion: reduce) { .hero__floaty span { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .nav-pirog { animation: none; } }
+@media (max-width: 600px) { .nav-pirog { display: none; } }
 
 /* ── 6. TYPOGRAPHY ──────────────────────────── */
 .label {
