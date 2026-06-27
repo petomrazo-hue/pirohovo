@@ -35,30 +35,47 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.06 });
 reveals.forEach(el => revealObs.observe(el));
 
-// ── Menu filter (restaurant list) ──
+// ── Menu filter (tabs + visual cat-cards) ──
 const tabs = document.querySelectorAll('.tab');
+const catCards = document.querySelectorAll('.cat-card');
 const menuCats = document.querySelectorAll('.menu-cat');
 const mItems = document.querySelectorAll('.mitem');
+
+function applyFilter(f) {
+  if (f === 'all') {
+    menuCats.forEach(c => c.classList.remove('hidden'));
+    mItems.forEach(i => i.style.display = '');
+  } else {
+    menuCats.forEach(cat => {
+      const groupItems = cat.querySelectorAll('.mitem');
+      const match = [...groupItems].some(i => i.dataset.cat === f);
+      cat.classList.toggle('hidden', !match);
+      groupItems.forEach(i => { i.style.display = i.dataset.cat === f ? '' : 'none'; });
+    });
+  }
+}
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    catCards.forEach(c => c.classList.remove('active'));
     tab.classList.add('active');
     tab.setAttribute('aria-selected', 'true');
     const f = tab.dataset.filter;
-    if (f === 'all') {
-      menuCats.forEach(c => c.classList.remove('hidden'));
-      mItems.forEach(i => i.style.display = '');
-    } else {
-      menuCats.forEach(cat => {
-        const groupItems = cat.querySelectorAll('.mitem');
-        const match = [...groupItems].some(i => i.dataset.cat === f);
-        cat.classList.toggle('hidden', !match);
-        groupItems.forEach(i => {
-          i.style.display = i.dataset.cat === f ? '' : 'none';
-        });
-      });
-    }
+    catCards.forEach(c => { if (c.dataset.filter === f) c.classList.add('active'); });
+    applyFilter(f);
+  });
+});
+
+catCards.forEach(card => {
+  card.addEventListener('click', () => {
+    catCards.forEach(c => c.classList.remove('active'));
+    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    card.classList.add('active');
+    const f = card.dataset.filter;
+    tabs.forEach(t => { if (t.dataset.filter === f) { t.classList.add('active'); t.setAttribute('aria-selected', 'true'); } });
+    applyFilter(f);
+    document.getElementById('menuList')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 });
 
