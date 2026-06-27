@@ -1373,6 +1373,14 @@ body::after {
   90%  { opacity: 1; }
   100% { transform: translateY(112vh) translateX(var(--dx,0)) rotate(var(--rot,360deg)); opacity: 0; }
 }
+/* logo poskočí pri easter egg */
+.nav__logo.logo-pop { animation: logoPop .5s cubic-bezier(.34,1.56,.64,1); }
+@keyframes logoPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.14) rotate(-3deg); }
+  70% { transform: scale(.96); }
+  100% { transform: scale(1); }
+}
 
 /* ── 27. CURSOR EFFECT ──────────────────────── */
 .cursor-pirog {

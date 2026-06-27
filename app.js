@@ -248,21 +248,23 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   let busy = false;
   function burst() {
     if (busy) return; busy = true;
-    const N = 36;
+    // logo poskočí
+    logo.classList.remove('logo-pop'); void logo.offsetWidth; logo.classList.add('logo-pop');
+    const N = 52;
     for (let i = 0; i < N; i++) {
       const s = document.createElement('span');
       s.className = 'egg-pirog';
       s.textContent = '🥟';
       s.style.left = (Math.random() * 100) + 'vw';
-      s.style.fontSize = (1 + Math.random() * 2) + 'rem';
-      s.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+      s.style.fontSize = (0.9 + Math.random() * 2.1) + 'rem';
+      s.style.setProperty('--dx', (Math.random() * 90 - 45) + 'px');
       s.style.setProperty('--rot', (Math.random() * 900 - 450) + 'deg');
-      s.style.animationDelay = (Math.random() * 0.35) + 's';
-      s.style.animationDuration = (1.7 + Math.random() * 1.4) + 's';
+      s.style.animationDelay = (Math.random() * 0.45) + 's';
+      s.style.animationDuration = (1.7 + Math.random() * 1.5) + 's';
       document.body.appendChild(s);
       s.addEventListener('animationend', () => s.remove());
     }
-    setTimeout(() => { busy = false; }, 700);
+    setTimeout(() => { busy = false; }, 600);
   }
 
   logo.addEventListener('click', (e) => {
