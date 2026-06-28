@@ -95,7 +95,8 @@
       var d = new Date();
       var hh = String(d.getHours()).padStart(2, '0');
       var mm = String(d.getMinutes()).padStart(2, '0');
-      el.textContent = hh + ':' + mm;
+      var ss = String(d.getSeconds()).padStart(2, '0');
+      el.textContent = hh + ':' + mm + ':' + ss;
     }
     tick();
     setInterval(tick, 1000);
