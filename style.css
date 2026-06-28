@@ -269,6 +269,9 @@ body::after {
 .nav__links a.is-active { color: var(--text); }
 .nav__links a.is-active::after { width: 100%; }
 
+/* mobilné kategórie/sekcie — na desktope skryté (mobil ich zobrazí v media query) */
+.nav__m-cats, .nav__m-divider { display: none; }
+
 /* Nav actions */
 .nav__actions {
   display: flex; align-items: center; gap: 12px; flex-shrink: 0;
@@ -1503,21 +1506,63 @@ body::after {
   }
   .nav__links {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(11,10,7,.97);
-    backdrop-filter: blur(20px) saturate(1.3);
-    -webkit-backdrop-filter: blur(20px) saturate(1.3);
-    flex-direction: column; align-items: center; justify-content: center;
-    gap: 28px; transform: translateX(100%);
+    background: rgba(11,10,7,.98);
+    backdrop-filter: blur(24px) saturate(1.3);
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    flex-direction: column; align-items: stretch; justify-content: flex-start;
+    gap: 0;
+    padding: calc(72px + env(safe-area-inset-top, 0px)) 26px calc(36px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
     transition: transform .35s cubic-bezier(.4,0,.2,1); z-index: 200;
   }
   .nav__links.open { transform: translateX(0); z-index: 600; }
-  .nav__links a { font-size: 1.4rem; color: var(--text); padding: 8px 0; }
+  .nav__links > li { width: 100%; }
+  .nav__links a::after { display: none; }
+
+  /* hlavné odkazy — veľké, ľavé, oddelené linkou (škáluje sa po zozname) */
+  .nav__links > li > a:not(.nav__order-mobile) {
+    display: block;
+    font-family: var(--font-brand);
+    font-size: clamp(1.7rem, 7vw, 2.3rem); font-weight: 700;
+    letter-spacing: .02em; text-transform: none;
+    color: var(--text);
+    padding: 13px 0; border-bottom: 1px solid var(--border);
+  }
+  .nav__links > li > a:not(.nav__order-mobile):active { color: var(--gold); }
+
+  /* sekcia s kategóriami menu */
+  .nav__m-cats {
+    display: flex; flex-direction: column;
+    padding: 20px 0 4px; margin-top: 4px;
+  }
+  .nav__m-label {
+    font-family: var(--font-body);
+    font-size: .7rem; font-weight: 700; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  }
+  .nav__m-cats a {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.1rem; color: var(--dim);
+    padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+  .nav__m-cats a::before { content: "🥟"; font-size: .95em; }
+  .nav__m-cats a:last-child { border-bottom: none; }
+  .nav__m-cats a:active { color: var(--text); }
+
   .nav__phone { display: none; }
   .nav__order { display: none; }
-  .nav__burger { display: flex; z-index: 201; position: relative; }
+  .nav__burger { display: flex; z-index: 601; position: relative; }
   .nav__burger.is-open { z-index: 601; }
+
+  /* CTA na konci panela */
   .nav__links .nav__order-mobile {
-    display: flex; margin-top: 12px;
+    display: flex; justify-content: center; align-items: center;
+    margin-top: 26px; padding: 16px;
+    background: var(--red); color: #fff;
+    font-family: var(--font-body); font-size: 1.02rem; font-weight: 700;
+    letter-spacing: .04em; text-transform: uppercase;
+    border-radius: 100px; box-shadow: 0 10px 30px rgba(212,44,31,.32);
   }
 }
 
