@@ -286,3 +286,26 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     if (isHome) { e.preventDefault(); burst(); }   // domov: easter egg miesto reloadu
   });
 })();
+
+// ── Ambientné plávajúce pirohy v hero (stále, aj na mobile) ──
+(function () {
+  const layer = document.getElementById('heroPirohy');
+  if (!layer) return;
+  const N = window.matchMedia('(max-width: 768px)').matches ? 11 : 17;
+  for (let i = 0; i < N; i++) {
+    const s = document.createElement('span');
+    s.className = 'hero__piroh';
+    s.textContent = '🥟';
+    s.style.left = (Math.random() * 94 + 2) + '%';
+    s.style.top = (Math.random() * 86 + 4) + '%';
+    s.style.fontSize = (1.1 + Math.random() * 1.8) + 'rem';
+    s.style.opacity = (0.14 + Math.random() * 0.28).toFixed(2);
+    s.style.setProperty('--dur', (7 + Math.random() * 6).toFixed(1) + 's');
+    s.style.setProperty('--delay', (-Math.random() * 7).toFixed(1) + 's');
+    s.style.setProperty('--tx', (Math.random() * 40 - 20).toFixed(0) + 'px');
+    s.style.setProperty('--ty', (-(16 + Math.random() * 32)).toFixed(0) + 'px');
+    s.style.setProperty('--r0', (Math.random() * 24 - 12).toFixed(0) + 'deg');
+    s.style.setProperty('--r1', (Math.random() * 24 - 12).toFixed(0) + 'deg');
+    layer.appendChild(s);
+  }
+})();

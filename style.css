@@ -373,6 +373,25 @@ body::after {
 }
 @keyframes glowPulse { from { opacity: .5; } to { opacity: 1; } }
 
+/* ambientné plávajúce pirohy v hero (za obsahom) */
+.hero__pirohy {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none; overflow: hidden;
+}
+.hero__piroh {
+  position: absolute; line-height: 1; user-select: none;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.55));
+  animation: heroPirohFloat var(--dur, 9s) ease-in-out var(--delay, 0s) infinite alternate;
+  will-change: transform;
+}
+@keyframes heroPirohFloat {
+  from { transform: translate(0, 0) rotate(var(--r0, -6deg)); }
+  to   { transform: translate(var(--tx, 12px), var(--ty, -26px)) rotate(var(--r1, 8deg)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__piroh { animation: none; }
+}
+
 .hero__particles { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
 
 .hero__content {
