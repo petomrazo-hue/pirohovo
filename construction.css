@@ -12,8 +12,9 @@ html.uc-on, html.uc-on body { overflow: hidden !important; }
   justify-content: center;
   padding: clamp(20px, 5vw, 48px);
   background:
-    radial-gradient(120% 90% at 50% -10%, rgba(212,44,31,.18), transparent 60%),
-    radial-gradient(90% 70% at 90% 110%, rgba(196,149,32,.12), transparent 60%),
+    radial-gradient(110% 80% at 50% -10%, rgba(212,44,31,.20), transparent 60%),
+    radial-gradient(90% 70% at 88% 112%, rgba(196,149,32,.14), transparent 60%),
+    radial-gradient(80% 60% at 10% 100%, rgba(212,44,31,.08), transparent 60%),
     #0b0a07;
   color: #f5f0e8;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -21,121 +22,152 @@ html.uc-on, html.uc-on body { overflow: hidden !important; }
   overflow-y: auto;
 }
 
-/* jemný filmový grain / vinetácia */
+/* vinetácia (medzi pirohmi a obsahom) */
 #uc::after {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0; z-index: 1;
   pointer-events: none;
-  background: radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%);
+  background: radial-gradient(120% 120% at 50% 38%, transparent 52%, rgba(0,0,0,.6) 100%);
 }
 
+/* ── ambientné plávajúce pirohy na pozadí ── */
+.uc-pirohy { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.uc-piroh {
+  position: absolute; line-height: 1; user-select: none;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.5));
+  animation: ucFloat var(--dur, 9s) ease-in-out var(--delay, 0s) infinite alternate;
+  will-change: transform;
+}
+@keyframes ucFloat {
+  from { transform: translateY(0) rotate(var(--r0, -8deg)); }
+  to   { transform: translateY(var(--ty, -28px)) rotate(var(--r1, 8deg)); }
+}
+
+/* ── stage ── */
 .uc-stage {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 540px;
+  position: relative; z-index: 2;
+  width: 100%; max-width: 560px;
   text-align: center;
-  animation: uc-in .7s cubic-bezier(.2,.7,.2,1) both;
 }
-@keyframes uc-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+/* postupný nábeh prvkov */
+.uc-stage > * { animation: uc-in .65s cubic-bezier(.2,.7,.2,1) both; }
+.uc-stage > *:nth-child(1) { animation-delay: .05s; }
+.uc-stage > *:nth-child(2) { animation-delay: .14s; }
+.uc-stage > *:nth-child(3) { animation-delay: .22s; }
+.uc-stage > *:nth-child(4) { animation-delay: .30s; }
+.uc-stage > *:nth-child(5) { animation-delay: .38s; }
+.uc-stage > *:nth-child(6) { animation-delay: .46s; }
+.uc-stage > *:nth-child(7) { animation-delay: .54s; }
+@keyframes uc-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
-.uc-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
+/* ── brand ── */
+.uc-brand { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 22px; }
+.uc-logo-wrap { position: relative; animation: ucLogoFloat 5s ease-in-out infinite; }
+.uc-logo-wrap::before {
+  content: ""; position: absolute; inset: -10px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,44,31,.45), transparent 70%);
+  filter: blur(8px); z-index: -1; animation: ucGlow 4s ease-in-out infinite alternate;
 }
 .uc-logo {
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255,255,255,.14);
-  box-shadow: 0 10px 40px rgba(0,0,0,.55), 0 0 0 6px rgba(212,44,31,.10);
+  width: 92px; height: 92px; border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(255,255,255,.16);
+  box-shadow: 0 12px 44px rgba(0,0,0,.55), 0 0 0 6px rgba(212,44,31,.10);
 }
-.uc-wordmark { width: clamp(180px, 60vw, 240px); height: auto; opacity: .96; }
+@keyframes ucLogoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes ucGlow { from { opacity: .5; } to { opacity: 1; } }
+.uc-wordmark { width: clamp(180px, 60vw, 248px); height: auto; opacity: .97; }
 
-.uc-title {
-  font-family: 'Amatic SC', cursive;
-  font-weight: 700;
-  font-size: clamp(2.6rem, 11vw, 4.4rem);
-  line-height: .96;
-  letter-spacing: .5px;
-  margin: 6px 0 4px;
-  background: linear-gradient(180deg, #f5f0e8, #e8372a 160%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+/* ── kicker + shimmer ── */
 .uc-kicker {
-  display: inline-block;
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: #daa830;
-  padding: 5px 14px;
-  border: 1px solid rgba(196,149,32,.4);
-  border-radius: 999px;
-  margin-bottom: 18px;
+  position: relative; display: inline-block; overflow: hidden;
+  font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: #daa830; padding: 6px 16px; margin-bottom: 18px;
+  border: 1px solid rgba(196,149,32,.4); border-radius: 999px;
   background: rgba(196,149,32,.08);
 }
+.uc-shine {
+  position: absolute; top: 0; left: -60%; width: 50%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+  animation: ucShine 3.4s ease-in-out infinite;
+}
+@keyframes ucShine { 0% { left: -60%; } 55%,100% { left: 130%; } }
+
+/* ── title ── */
+.uc-title {
+  font-family: 'Amatic SC', cursive; font-weight: 700;
+  font-size: clamp(2.7rem, 11vw, 4.6rem); line-height: .95; letter-spacing: .5px;
+  margin: 4px 0 6px;
+  background: linear-gradient(180deg, #f5f0e8, #e8372a 165%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
 .uc-sub {
-  color: rgba(245,240,232,.78);
-  font-size: clamp(.95rem, 2.6vw, 1.06rem);
-  line-height: 1.6;
-  max-width: 420px;
-  margin: 0 auto 26px;
+  color: rgba(245,240,232,.78); font-size: clamp(.95rem, 2.6vw, 1.06rem);
+  line-height: 1.6; max-width: 430px; margin: 0 auto 26px;
 }
 .uc-sub b { color: #f5f0e8; }
 
-/* objednávkové tlačidlá */
-.uc-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 22px;
-}
+/* ── objednávkové tlačidlá ── */
+.uc-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
 .uc-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 13px 20px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: .98rem;
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,.12);
-  background: #201f14;
-  color: #f5f0e8;
-  transition: transform .15s ease, border-color .2s ease, background .2s ease;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: .98rem;
+  text-decoration: none; color: #f5f0e8;
+  border: 1px solid rgba(255,255,255,.12); background: #201f14;
+  transition: transform .15s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
-.uc-btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.28); }
+.uc-btn:hover { transform: translateY(-2px); }
 .uc-btn img { width: 18px; height: 18px; border-radius: 4px; object-fit: cover; }
-.uc-btn--wa   { background: #1f8a4c; border-color: #25a35a; }
-.uc-btn--wa:hover { background: #229a55; }
+.uc-btn svg { width: 17px; height: 17px; }
+.uc-btn--wolt { border-color: rgba(0,157,224,.5); }
+.uc-btn--wolt:hover { background: rgba(0,157,224,.16); border-color: #009de0; box-shadow: 0 8px 22px rgba(0,157,224,.22); }
+.uc-btn--bolt { border-color: rgba(52,209,134,.5); }
+.uc-btn--bolt:hover { background: rgba(52,209,134,.16); border-color: #34d186; box-shadow: 0 8px 22px rgba(52,209,134,.2); }
 .uc-btn--call { background: #d42c1f; border-color: #e8372a; }
-.uc-btn--call:hover { background: #e8372a; }
+.uc-btn--call:hover { background: #e8372a; box-shadow: 0 10px 26px rgba(212,44,31,.4); }
 
-/* sociálne / pätička */
-.uc-social {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  font-size: .88rem;
+/* ── meta: status + adresa ── */
+.uc-meta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 8px 16px; margin-bottom: 14px; font-size: .86rem;
 }
-.uc-social a {
-  color: rgba(245,240,232,.6);
-  text-decoration: none;
-  transition: color .2s ease;
+.uc-status { display: inline-flex; align-items: center; gap: 7px; color: rgba(245,240,232,.82); }
+.uc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.uc-status.is-open  .uc-dot { background: #46c46e; box-shadow: 0 0 0 0 rgba(70,196,110,.6); animation: ucPulse 2s infinite; }
+.uc-status.is-closed .uc-dot { background: #d99; }
+@keyframes ucPulse { 0% { box-shadow: 0 0 0 0 rgba(70,196,110,.55); } 70% { box-shadow: 0 0 0 7px rgba(70,196,110,0); } 100% { box-shadow: 0 0 0 0 rgba(70,196,110,0); } }
+.uc-addr {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(245,240,232,.62); text-decoration: none; transition: color .2s;
 }
-.uc-social a:hover { color: #f5f0e8; }
+.uc-addr svg { width: 14px; height: 14px; }
+.uc-addr:hover { color: #f5f0e8; }
+
+/* ── rating ── */
+.uc-rating { font-size: .86rem; color: rgba(245,240,232,.6); margin-bottom: 24px; }
+.uc-rating b { color: #f5f0e8; }
+.uc-stars { color: #daa830; letter-spacing: 1px; }
+
+/* ── sociálne ikonky ── */
+.uc-social { display: flex; justify-content: center; gap: 14px; }
+.uc-soc {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  color: rgba(245,240,232,.7);
+  border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04);
+  transition: transform .2s ease, color .2s ease, border-color .2s ease, background .2s ease;
+}
+.uc-soc svg { width: 22px; height: 22px; }
+.uc-soc:hover { transform: translateY(-3px); color: #fff; border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.1); }
 
 @media (max-width: 460px) {
   .uc-actions { flex-direction: column; }
   .uc-btn { width: 100%; }
+}
+
+/* ── respektuj reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .uc-stage > *, .uc-logo-wrap, .uc-logo-wrap::before, .uc-shine, .uc-status.is-open .uc-dot, .uc-piroh {
+    animation: none !important;
+  }
+  .uc-stage > * { opacity: 1; transform: none; }
 }
