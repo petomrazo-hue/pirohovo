@@ -372,7 +372,7 @@ body::after {
 
 .hero__bg {
   position: absolute; inset: 0; z-index: 0;
-  background-image: url('images/ig-stanek.png');
+  background-image: url('images/ig-stanek.webp');
   background-size: cover; background-position: center 30%;
   transform: scale(1.06);
   will-change: transform;
@@ -1701,3 +1701,201 @@ body::after {
   margin-bottom: 24px; transition: color .2s;
 }
 .page-header .back-link:hover { color: var(--text); }
+
+
+/* ─── Construction overlay ─── */
+html.uc-on, html.uc-on body { overflow: hidden !important; }
+
+#uc {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  /* flex-start + margin:auto na .uc-stage = centruje keď je miesto, scrolluje keď nie */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(16px, 4vw, 48px);
+  padding-top: max(clamp(16px, 4vw, 48px), env(safe-area-inset-top, 0px));
+  padding-bottom: max(clamp(16px, 4vw, 48px), env(safe-area-inset-bottom, 0px));
+  background:
+    radial-gradient(110% 80% at 50% -10%, rgba(212,44,31,.20), transparent 60%),
+    radial-gradient(90% 70% at 88% 112%, rgba(196,149,32,.14), transparent 60%),
+    radial-gradient(80% 60% at 10% 100%, rgba(212,44,31,.08), transparent 60%),
+    #0b0a07;
+  color: #f5f0e8;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: auto;
+}
+
+/* vinetácia (medzi pirohmi a obsahom) */
+#uc::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(120% 120% at 50% 38%, transparent 52%, rgba(0,0,0,.6) 100%);
+}
+
+/* ── ambientné plávajúce pirohy na pozadí ── */
+.uc-pirohy { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.uc-piroh {
+  position: absolute; line-height: 1; user-select: none;
+  top: -8%;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.5));
+  animation: ucFall var(--dur, 18s) linear var(--delay, 0s) infinite;
+  will-change: transform;
+}
+@keyframes ucFall {
+  from { transform: translateY(0) rotate(var(--r0, -8deg)); }
+  to   { transform: translateY(112vh) rotate(var(--r1, 20deg)); }
+}
+
+/* ── stage ── */
+.uc-stage {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 560px;
+  text-align: center;
+  margin: auto; /* centruje vertikálne keď je dostatok priestoru */
+}
+/* postupný nábeh prvkov */
+.uc-stage > * { animation: uc-in .65s cubic-bezier(.2,.7,.2,1) both; }
+.uc-stage > *:nth-child(1) { animation-delay: .05s; }
+.uc-stage > *:nth-child(2) { animation-delay: .14s; }
+.uc-stage > *:nth-child(3) { animation-delay: .22s; }
+.uc-stage > *:nth-child(4) { animation-delay: .30s; }
+.uc-stage > *:nth-child(5) { animation-delay: .38s; }
+.uc-stage > *:nth-child(6) { animation-delay: .46s; }
+.uc-stage > *:nth-child(7) { animation-delay: .54s; }
+@keyframes uc-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* ── brand ── */
+.uc-brand { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 22px; }
+.uc-logo-wrap { position: relative; animation: ucLogoFloat 5s ease-in-out infinite; }
+.uc-logo-wrap::before {
+  content: ""; position: absolute; inset: -10px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,44,31,.45), transparent 70%);
+  filter: blur(8px); z-index: -1; animation: ucGlow 4s ease-in-out infinite alternate;
+}
+.uc-logo {
+  width: 92px; height: 92px; border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(255,255,255,.16);
+  box-shadow: 0 12px 44px rgba(0,0,0,.55), 0 0 0 6px rgba(212,44,31,.10);
+}
+@keyframes ucLogoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes ucGlow { from { opacity: .5; } to { opacity: 1; } }
+.uc-wordmark { width: clamp(180px, 60vw, 248px); height: auto; opacity: .97; }
+
+/* ── piroh hero ── */
+.uc-piroh-hero {
+  font-size: clamp(3.4rem, 13vw, 5.6rem);
+  line-height: 1;
+  margin: 0 0 14px;
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,.55));
+  display: block;
+}
+
+/* ── title ── */
+.uc-title {
+  font-family: 'Amatic SC', cursive; font-weight: 700;
+  font-size: clamp(2.7rem, 11vw, 4.6rem); line-height: .95; letter-spacing: .5px;
+  margin: 4px 0 6px;
+  color: #f5f0e8;
+}
+/* ── aktuálny čas ── */
+.uc-clock {
+  font-family: 'Amatic SC', cursive;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 700;
+  color: rgba(245,240,232,.55);
+  letter-spacing: 4px;
+  margin: 2px 0 22px;
+  display: block;
+}
+
+.uc-sub {
+  color: rgba(245,240,232,.78); font-size: clamp(.95rem, 2.6vw, 1.06rem);
+  line-height: 1.6; max-width: 430px; margin: 0 auto 26px;
+}
+.uc-sub b { color: #f5f0e8; }
+
+/* ── objednávkové tlačidlá ── */
+.uc-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.uc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: .98rem;
+  text-decoration: none; color: #f5f0e8;
+  border: 1px solid rgba(255,255,255,.12); background: #201f14;
+  transition: transform .15s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.uc-btn:hover { transform: translateY(-2px); }
+.uc-btn img { width: 18px; height: 18px; border-radius: 4px; object-fit: cover; }
+.uc-btn svg { width: 17px; height: 17px; }
+.uc-btn--wolt { border-color: rgba(0,157,224,.5); }
+.uc-btn--wolt:hover { background: rgba(0,157,224,.16); border-color: #009de0; box-shadow: 0 8px 22px rgba(0,157,224,.22); }
+.uc-btn--bolt { border-color: rgba(52,209,134,.5); }
+.uc-btn--bolt:hover { background: rgba(52,209,134,.16); border-color: #34d186; box-shadow: 0 8px 22px rgba(52,209,134,.2); }
+.uc-btn--call { background: #d42c1f; border-color: #e8372a; }
+.uc-btn--call:hover { background: #e8372a; box-shadow: 0 10px 26px rgba(212,44,31,.4); }
+
+/* ── meta: status + adresa ── */
+.uc-meta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 8px 16px; margin-bottom: 14px; font-size: .86rem;
+}
+.uc-status { display: inline-flex; align-items: center; gap: 7px; color: rgba(245,240,232,.82); }
+.uc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.uc-status.is-open  .uc-dot { background: #46c46e; box-shadow: 0 0 0 0 rgba(70,196,110,.6); animation: ucPulse 2s infinite; }
+.uc-status.is-closed .uc-dot { background: #d99; }
+@keyframes ucPulse { 0% { box-shadow: 0 0 0 0 rgba(70,196,110,.55); } 70% { box-shadow: 0 0 0 7px rgba(70,196,110,0); } 100% { box-shadow: 0 0 0 0 rgba(70,196,110,0); } }
+.uc-addr {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(245,240,232,.62); text-decoration: none; transition: color .2s;
+}
+.uc-addr svg { width: 14px; height: 14px; }
+.uc-addr:hover { color: #f5f0e8; }
+
+/* ── rating ── */
+.uc-rating { font-size: .86rem; color: rgba(245,240,232,.6); margin-bottom: 24px; }
+.uc-rating b { color: #f5f0e8; }
+.uc-stars { color: #daa830; letter-spacing: 1px; }
+
+/* ── sociálne ikonky ── */
+.uc-social { display: flex; justify-content: center; gap: 14px; }
+.uc-soc {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  color: rgba(245,240,232,.7);
+  border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04);
+  transition: transform .2s ease, color .2s ease, border-color .2s ease, background .2s ease;
+}
+.uc-soc svg { width: 22px; height: 22px; }
+.uc-soc:hover { transform: translateY(-3px); color: #fff; border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.1); }
+
+@media (max-width: 460px) {
+  .uc-actions { flex-direction: column; }
+  .uc-btn { width: 100%; }
+}
+
+/* ── malá výška (mobil s URL lištou) ── */
+@media (max-height: 680px) {
+  .uc-logo { width: 68px; height: 68px; }
+  .uc-wordmark { width: clamp(140px, 50vw, 200px); }
+  .uc-brand { gap: 10px; margin-bottom: 14px; }
+  .uc-piroh-hero { font-size: clamp(2.2rem, 9vw, 3.6rem); margin-bottom: 8px; }
+  .uc-title { font-size: clamp(2.2rem, 9vw, 3.8rem); }
+  .uc-clock { font-size: clamp(1.4rem, 5vw, 2rem); margin-bottom: 14px; }
+  .uc-sub { margin-bottom: 16px; font-size: .92rem; }
+  .uc-actions { margin-bottom: 14px; }
+  .uc-rating { margin-bottom: 14px; }
+  .uc-social { gap: 10px; }
+  .uc-soc { width: 38px; height: 38px; }
+}
+
+/* ── respektuj reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .uc-stage > *, .uc-logo-wrap, .uc-logo-wrap::before, .uc-status.is-open .uc-dot, .uc-piroh, .uc-piroh-hero {
+    animation: none !important;
+  }
+  .uc-stage > * { opacity: 1; transform: none; }
+}
