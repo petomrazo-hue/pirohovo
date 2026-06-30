@@ -154,7 +154,6 @@ if (catBtns.length && catSections.length) {
 (function () {
   if (window.__UC__) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if ('ontouchstart' in window && navigator.maxTouchPoints > 1) return;
 
   let last = 0, count = 0;
 
@@ -181,6 +180,15 @@ if (catBtns.length && catSections.length) {
     last = now; count++;
     emitPirog(e.clientX, e.clientY, false);
     if (count % 6 === 0) emitPirog(e.clientX + (Math.random()-0.5)*16, e.clientY + (Math.random()-0.5)*16, false);
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    const now = Date.now();
+    if (now - last < 80) return;
+    last = now; count++;
+    const t = e.touches[0];
+    emitPirog(t.clientX, t.clientY, false);
+    if (count % 5 === 0) emitPirog(t.clientX + (Math.random()-0.5)*16, t.clientY + (Math.random()-0.5)*16, false);
   }, { passive: true });
 
   window.addEventListener('click', (e) => {
