@@ -957,6 +957,11 @@ body::after {
   height: 480px;
 }
 .location-map iframe { width: 100%; height: 100%; }
+.location-map--static { display: flex; align-items: center; justify-content: center; background: var(--bg-alt); }
+.location-map__link { display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; color: var(--text); text-align: center; padding: 24px; }
+.location-map__link svg { opacity: .85; }
+.location-map__addr { font-size: .95rem; color: var(--muted); }
+.location-map__cta { font-size: .85rem; color: var(--red); font-weight: 600; }
 
 /* ── 20. FAQ ────────────────────────────────── */
 .faq-section {
